@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    //"coc-clang-format-style-options": ">=0.0.5",
+    "coc-clangd": ">=0.22.0",
+    "coc-cmake": ">=0.2.1",
+    "coc-fzf-preview": ">=2.12.9",
+    "coc-json": ">=1.4.2",
+    "coc-lists": ">=1.4.3",
+    "coc-prettier": ">=9.3.1",
+    "coc-pyright": ">=1.1.255",
+    "coc-python": ">=1.2.13",
+    "coc-vimlsp": ">=0.12.8",
+    "coc-yaml": ">=1.7.5"
+  }
+}

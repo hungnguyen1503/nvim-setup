@@ -1,0 +1,17 @@
+Install pyvim in Python
+pip install --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org --upgrade pip
+
+Install neovim in npm
+npm install passport --legacy-peer-deps
+
+Install extension in Coc-vim:
+    - coc-clangd
+    - coc-cmake
+    - coc-json
+    - coc-prettier
+    - coc-pyright
+    - coc-python
+    - coc-vimlsp
+    - coc-yaml
+    - coc-lists
+    - coc-fzf-preview

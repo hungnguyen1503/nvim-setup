@@ -1,0 +1,346 @@
+{
+  "coc-python|C:\\Windows\\system32": {
+    "INTERPRETERS_CACHE_v3_WorkspaceVirtualEnvService": [],
+    "INTERPRETERS_CACHE_v3_PipEnvService": []
+  },
+  "coc-python|global": {
+    "INTERPRETERS_CACHE_v3_CondaEnvFileService": [],
+    "INTERPRETERS_CACHE_v3_VirtualEnvService": [],
+    "C:\\Python310\\python.exe.v3": {
+      "data": {
+        "architecture": 3,
+        "path": "C:\\Python310\\python.exe",
+        "version": {
+          "options": {
+            "loose": false,
+            "includePrerelease": false
+          },
+          "loose": false,
+          "raw": "3.10.4-final",
+          "major": 3,
+          "minor": 10,
+          "patch": 4,
+          "prerelease": [
+            "final"
+          ],
+          "build": [],
+          "version": "3.10.4-final"
+        },
+        "sysPrefix": "C:\\Python310",
+        "fileHash": "acc9aee0ce3b0aa62b8cb63e9ab8cb7bd06440ecd7a496667df85552502756fd065721757d82e9f683655746ea9083ae4919801238d5a30eb4df9fedfcdd2b96"
+      },
+      "expiry": 1656050030034
+    },
+    "INTERPRETERS_CACHE_v3_CurrentPathService": [
+      {
+        "architecture": 3,
+        "path": "C:\\Python310\\python.exe",
+        "version": {
+          "options": {
+            "loose": false,
+            "includePrerelease": false
+          },
+          "loose": false,
+          "raw": "3.10.4-final",
+          "major": 3,
+          "minor": 10,
+          "patch": 4,
+          "prerelease": [
+            "final"
+          ],
+          "build": [],
+          "version": "3.10.4-final"
+        },
+        "sysPrefix": "C:\\Python310",
+        "fileHash": "acc9aee0ce3b0aa62b8cb63e9ab8cb7bd06440ecd7a496667df85552502756fd065721757d82e9f683655746ea9083ae4919801238d5a30eb4df9fedfcdd2b96",
+        "type": "Unknown"
+      },
+      {
+        "architecture": 3,
+        "path": "C:\\Python310\\python.exe",
+        "version": {
+          "options": {
+            "loose": false,
+            "includePrerelease": false
+          },
+          "loose": false,
+          "raw": "3.10.4-final",
+          "major": 3,
+          "minor": 10,
+          "patch": 4,
+          "prerelease": [
+            "final"
+          ],
+          "build": [],
+          "version": "3.10.4-final"
+        },
+        "sysPrefix": "C:\\Python310",
+        "fileHash": "acc9aee0ce3b0aa62b8cb63e9ab8cb7bd06440ecd7a496667df85552502756fd065721757d82e9f683655746ea9083ae4919801238d5a30eb4df9fedfcdd2b96",
+        "type": "Unknown"
+      },
+      {
+        "architecture": 3,
+        "path": "C:\\Python310\\python.exe",
+        "version": {
+          "options": {
+            "loose": false,
+            "includePrerelease": false
+          },
+          "loose": false,
+          "raw": "3.10.4-final",
+          "major": 3,
+          "minor": 10,
+          "patch": 4,
+          "prerelease": [
+            "final"
+          ],
+          "build": [],
+          "version": "3.10.4-final"
+        },
+        "sysPrefix": "C:\\Python310",
+        "fileHash": "acc9aee0ce3b0aa62b8cb63e9ab8cb7bd06440ecd7a496667df85552502756fd065721757d82e9f683655746ea9083ae4919801238d5a30eb4df9fedfcdd2b96",
+        "type": "Unknown"
+      }
+    ],
+    "InterpreterAutoSeletionRule-currentPath": {
+      "architecture": 3,
+      "path": "C:\\Python310\\python.exe",
+      "version": {
+        "options": {
+          "loose": false,
+          "includePrerelease": false
+        },
+        "loose": false,
+        "raw": "3.10.4-final",
+        "major": 3,
+        "minor": 10,
+        "patch": 4,
+        "prerelease": [
+          "final"
+        ],
+        "build": [],
+        "version": "3.10.4-final"
+      },
+      "sysPrefix": "C:\\Python310",
+      "fileHash": "acc9aee0ce3b0aa62b8cb63e9ab8cb7bd06440ecd7a496667df85552502756fd065721757d82e9f683655746ea9083ae4919801238d5a30eb4df9fedfcdd2b96",
+      "type": "Unknown"
+    },
+    "preferredGlobalPyInterpreter": {
+      "architecture": 3,
+      "path": "C:\\Python310\\python.exe",
+      "version": {
+        "options": {
+          "loose": false,
+          "includePrerelease": false
+        },
+        "loose": false,
+        "raw": "3.10.4-final",
+        "major": 3,
+        "minor": 10,
+        "patch": 4,
+        "prerelease": [
+          "final"
+        ],
+        "build": [],
+        "version": "3.10.4-final"
+      },
+      "sysPrefix": "C:\\Python310",
+      "fileHash": "4de5340a0d0a50aad3c9a4e29bcb8d35d787d9ce26a0546c21ef1823a6e21742ad788d77254b42b97fba8d05e0cb08356512f86c8998faf9d6c57ca2296a5bbb",
+      "type": "Unknown"
+    },
+    "C:\\Python310\\python.exe.interpreter.Details.v7": {
+      "data": {
+        "fileHash": "acc9aee0ce3b0aa62b8cb63e9ab8cb7bd06440ecd7a496667df85552502756fd065721757d82e9f683655746ea9083ae4919801238d5a30eb4df9fedfcdd2b96",
+        "info": {
+          "architecture": 3,
+          "path": "C:\\Python310\\python.exe",
+          "version": {
+            "options": {
+              "loose": false,
+              "includePrerelease": false
+            },
+            "loose": false,
+            "raw": "3.10.4-final",
+            "major": 3,
+            "minor": 10,
+            "patch": 4,
+            "prerelease": [
+              "final"
+            ],
+            "build": [],
+            "version": "3.10.4-final"
+          },
+          "sysPrefix": "C:\\Python310",
+          "fileHash": "acc9aee0ce3b0aa62b8cb63e9ab8cb7bd06440ecd7a496667df85552502756fd065721757d82e9f683655746ea9083ae4919801238d5a30eb4df9fedfcdd2b96",
+          "companyDisplayName": "Python Software Foundation",
+          "type": "Unknown",
+          "displayName": "Python 3.10.4 64-bit",
+          "__store": true
+        }
+      },
+      "expiry": 1656050030591
+    },
+    "INTERPRETERS_CACHE_v3_KnownPathsService": [
+      {
+        "architecture": 3,
+        "path": "C:\\Python310\\python.exe",
+        "version": {
+          "options": {
+            "loose": false,
+            "includePrerelease": false
+          },
+          "loose": false,
+          "raw": "3.10.4-final",
+          "major": 3,
+          "minor": 10,
+          "patch": 4,
+          "prerelease": [
+            "final"
+          ],
+          "build": [],
+          "version": "3.10.4-final"
+        },
+        "sysPrefix": "C:\\Python310",
+        "fileHash": "acc9aee0ce3b0aa62b8cb63e9ab8cb7bd06440ecd7a496667df85552502756fd065721757d82e9f683655746ea9083ae4919801238d5a30eb4df9fedfcdd2b96",
+        "type": "Unknown"
+      }
+    ],
+    "INTERPRETERS_CACHE_v3_WindowsRegistryService": [
+      {
+        "architecture": 3,
+        "path": "C:\\Python310\\python.exe",
+        "version": {
+          "options": {
+            "loose": false,
+            "includePrerelease": false
+          },
+          "loose": false,
+          "raw": "3.10.4-final",
+          "major": 3,
+          "minor": 10,
+          "patch": 4,
+          "prerelease": [
+            "final"
+          ],
+          "build": [],
+          "version": "3.10.4-final"
+        },
+        "sysPrefix": "C:\\Python310",
+        "fileHash": "acc9aee0ce3b0aa62b8cb63e9ab8cb7bd06440ecd7a496667df85552502756fd065721757d82e9f683655746ea9083ae4919801238d5a30eb4df9fedfcdd2b96",
+        "companyDisplayName": "Python Software Foundation",
+        "type": "Unknown"
+      }
+    ],
+    "InterpreterAutoSeletionRule-windowsRegistry": {
+      "architecture": 3,
+      "path": "C:\\Python310\\python.exe",
+      "version": {
+        "options": {
+          "loose": false,
+          "includePrerelease": false
+        },
+        "loose": false,
+        "raw": "3.10.4-final",
+        "major": 3,
+        "minor": 10,
+        "patch": 4,
+        "prerelease": [
+          "final"
+        ],
+        "build": [],
+        "version": "3.10.4-final"
+      },
+      "sysPrefix": "C:\\Python310",
+      "fileHash": "acc9aee0ce3b0aa62b8cb63e9ab8cb7bd06440ecd7a496667df85552502756fd065721757d82e9f683655746ea9083ae4919801238d5a30eb4df9fedfcdd2b96",
+      "companyDisplayName": "Python Software Foundation",
+      "type": "Unknown"
+    },
+    "INTERPRETERS_CACHE_v3_CondaEnvService": [],
+    "PipEnvInformation": [],
+    "C:\\Python310\\python.exe.interpreter.displayName.v7": {
+      "data": {
+        "displayName": "Python 3.10.4 64-bit",
+        "hash": "acc9aee0ce3b0aa62b8cb63e9ab8cb7bd06440ecd7a496667df85552502756fd065721757d82e9f683655746ea9083ae4919801238d5a30eb4df9fedfcdd2b96-f58e6d9f5428140fe02acd51ff1dfe1a"
+      },
+      "expiry": 1656050030598
+    },
+    "InterpreterAutoSeletionRule-system": {
+      "architecture": 3,
+      "path": "C:\\Python310\\python.exe",
+      "version": {
+        "options": {
+          "loose": false,
+          "includePrerelease": false
+        },
+        "loose": false,
+        "raw": "3.10.4-final",
+        "major": 3,
+        "minor": 10,
+        "patch": 4,
+        "prerelease": [
+          "final"
+        ],
+        "build": [],
+        "version": "3.10.4-final"
+      },
+      "sysPrefix": "C:\\Python310",
+      "fileHash": "acc9aee0ce3b0aa62b8cb63e9ab8cb7bd06440ecd7a496667df85552502756fd065721757d82e9f683655746ea9083ae4919801238d5a30eb4df9fedfcdd2b96",
+      "companyDisplayName": "Python Software Foundation",
+      "type": "Unknown",
+      "displayName": "Python 3.10.4 64-bit"
+    },
+    "InterpreterAutoSeletionRule-cachedInterpreters": {
+      "architecture": 3,
+      "path": "C:\\Python310\\python.exe",
+      "version": {
+        "options": {
+          "loose": false,
+          "includePrerelease": false
+        },
+        "loose": false,
+        "raw": "3.10.4-final",
+        "major": 3,
+        "minor": 10,
+        "patch": 4,
+        "prerelease": [
+          "final"
+        ],
+        "build": [],
+        "version": "3.10.4-final"
+      },
+      "sysPrefix": "C:\\Python310",
+      "fileHash": "acc9aee0ce3b0aa62b8cb63e9ab8cb7bd06440ecd7a496667df85552502756fd065721757d82e9f683655746ea9083ae4919801238d5a30eb4df9fedfcdd2b96",
+      "companyDisplayName": "Python Software Foundation",
+      "type": "Unknown"
+    }
+  },
+  "coc-python|d:\\VisionIP\\rcar-env": {
+    "INTERPRETERS_CACHE_v3_PipEnvService:47721f27a91e06e6aa9bf215e895ca37": [],
+    "INTERPRETERS_CACHE_v3_WorkspaceVirtualEnvService:47721f27a91e06e6aa9bf215e895ca37": [],
+    "autoSelectedWorkspacePythonInterpreter-d:\\VisionIP\\rcar-env": {
+      "architecture": 3,
+      "path": "C:\\Python310\\python.exe",
+      "version": {
+        "options": {
+          "loose": false,
+          "includePrerelease": false
+        },
+        "loose": false,
+        "raw": "3.10.4-final",
+        "major": 3,
+        "minor": 10,
+        "patch": 4,
+        "prerelease": [
+          "final"
+        ],
+        "build": [],
+        "version": "3.10.4-final"
+      },
+      "sysPrefix": "C:\\Python310",
+      "fileHash": "4de5340a0d0a50aad3c9a4e29bcb8d35d787d9ce26a0546c21ef1823a6e21742ad788d77254b42b97fba8d05e0cb08356512f86c8998faf9d6c57ca2296a5bbb",
+      "type": "Unknown"
+    },
+    "INTERPRETERS_CACHE_v3_PipEnvService": [],
+    "INTERPRETERS_CACHE_v3_WorkspaceVirtualEnvService": []
+  }
+}
