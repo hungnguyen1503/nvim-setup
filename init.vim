@@ -10,7 +10,7 @@ set list
 
 set foldmethod=indent      "fold source code 
 " set foldnestmax
-set foldnestmax=2
+set foldnestmax=1
 set foldlevelstart=0        
 set autoindent 
 set smartindent
@@ -86,8 +86,8 @@ let mapleader=","
 noremap <leader><leader> :noh<CR>
 
 " Set cursor move begin and end line
-noremap <silent><A-h> ^
-noremap <silent><A-l> $
+noremap <silent><S-h> ^
+noremap <silent><S-l> $
 
 " Set cursor in Insert mode
 inoremap <A-h> <Left>
@@ -95,14 +95,14 @@ inoremap <A-j> <Down>
 inoremap <A-k> <Up>
 inoremap <A-l> <Right>
 
-" Switch current line
-nnoremap <A-j> :m .+1<CR>==
-nnoremap <A-k> :m .-2<CR>==
+" " Switch current line
+" nnoremap <A-j> :m .+1<CR>==
+" nnoremap <A-k> :m .-2<CR>==
  
-" Move selection up
-xmap <A-k> :move '<-2<CR>gv
-" Move selection down
-xmap <A-j> :move '>+1<CR>gv
+" " Move selection up
+" xmap <A-k> :move '<-2<CR>gv
+" " Move selection down
+" xmap <A-j> :move '>+1<CR>gv
 
 " Insert new blank
 nnoremap <space>o o<ESC>
@@ -126,8 +126,8 @@ noremap / :set hlsearch<cr>/
 noremap ? :set hlsearch<cr>?
 
 "replace quick
-noremap <leader>r :s/
-noremap <leader>g :%s/
+" noremap <leader>r :s/
+" noremap <leader>g :%s/
 
 " Toggle relative line numbers and regular line numbers.
 nnoremap <F12> :set relativenumber!<CR>
@@ -148,10 +148,13 @@ noremap <C-c> y
 
 " Set quick scroll 
 set scrolloff=0
-nnoremap <C-k> <ScrollWheelUp>
-nnoremap <C-j> <ScrollWheelDown>
+nnoremap <C-j> 3<C-e>
+nnoremap <C-k> 3<C-y>
 noremap <C-e> 3<C-e>
 noremap <C-y> 3<C-y>
+
+" Set argument array
+nnoremap <silent> <leader>ar :ArgWrap<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugin list
@@ -225,6 +228,15 @@ call plug#begin('~/plugged')
               \{'do': ':TSUpdate'}
   Plug 'tversteeg/registers.nvim',              " Quick use register 
               \{ 'branch': 'main' } 
+
+" Quick replace
+  Plug 'kqito/vim-easy-replace'                 " Easy to replace something 
+
+" Smart move
+  Plug 'matze/vim-move'                         " Quick move 
+
+" ArgWrap argument
+  Plug 'foosoft/vim-argwrap'                    " Divide element in array
 
 call plug#end()
 
