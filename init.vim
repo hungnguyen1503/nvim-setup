@@ -294,7 +294,7 @@ let g:lens#width_resize_min = 20
 lua << EOF
   require('searchbox').setup({
   })
-  require("notify")("My super important message")
+  require("notify")("Have a good day !!!")
 EOF
 
 " Hung Quang Ok
