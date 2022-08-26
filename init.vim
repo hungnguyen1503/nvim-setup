@@ -147,11 +147,11 @@ nnoremap d<Tab> :Bdelete<CR>
 noremap <C-c> y
 
 " Set quick scroll 
-set scrolloff=0
-nnoremap <C-j> 3<C-e>
-nnoremap <C-k> 3<C-y>
-noremap <C-e> 3<C-e>
-noremap <C-y> 3<C-y>
+" set scrolloff=0
+" nnoremap <C-j> 3<C-e>
+" nnoremap <C-k> 3<C-y>
+" noremap <C-e> 3<C-e>
+" noremap <C-y> 3<C-y>
 
 " Set argument array
 nnoremap <silent> <leader>ar :ArgWrap<CR>
@@ -168,7 +168,6 @@ call plug#begin('~/plugged')
 " File browser
   Plug 'preservim/nerdTree'                     " File browser  
   Plug 'Xuyuanp/nerdtree-git-plugin'            " Git status
-  Plug 'rhysd/git-messenger.vim'                " Git messenger
   Plug 'ryanoasis/vim-devicons'                 " Icon
   Plug 'tiagofumo'
           \ .'/vim-nerdtree-syntax-highlight'
@@ -178,7 +177,7 @@ call plug#begin('~/plugged')
   Plug 'junegunn/fzf', 
     \ { 'do': { -> fzf#install() } }            " Fuzzy finder 
   Plug 'junegunn/fzf.vim'
-  Plug 'yuki-yano/fzf-preview.vim', { 'branch': 'release/rpc' }
+  " Plug 'yuki-yano/fzf-preview.vim', { 'branch': 'release/rpc' }
 
 " Status bar
   Plug 'vim-airline/vim-airline'
@@ -206,21 +205,22 @@ call plug#begin('~/plugged')
   Plug 'vim-scripts/ifdef-highlighting'         " Highlight
 
   " Plug 'kendling/taghighlight'
-  Plug 'jalcine/cmake.vim'
+  " Plug 'jalcine/cmake.vim'
   Plug 'machakann/vim-highlightedyank'          " Highlight copy word
 
 " Code commentary
   Plug 'tpope/vim-commentary'
   
 " Debugging
-  Plug 'puremourning/vimspector'                " Vimspector
+  " Plug 'puremourning/vimspector'                " Vimspector
   Plug 'camspiers/animate.vim'
   Plug 'camspiers/lens.vim'
 
 " Source code version control 
   Plug 'tpope/vim-fugitive'                     " Git infomation 
+  Plug 'rhysd/git-messenger.vim'                " Git messenger
   Plug 'tpope/vim-rhubarb' 
-  Plug 'airblade/vim-gitgutter'                 " Git show changes 
+  " Plug 'airblade/vim-gitgutter'                 " Git show changes 
   Plug 'samoshkin/vim-mergetool'                " Git merge
 
 " Using quick resgister
@@ -238,24 +238,47 @@ call plug#begin('~/plugged')
 " ArgWrap argument
   Plug 'foosoft/vim-argwrap'                    " Divide element in array
 
+" Gui in nvim
+  Plug 'MunifTanjim/nui.nvim'
+  Plug 'VonHeikemen/searchbox.nvim'
+
+" Comfortable motion moving
+  Plug 'yuttie/comfortable-motion.vim'
+
+" Tran Nguyensparent background
+  " Plug 'xiyaowong/nvim-transparent'   
+  " Plug 'kjwon15/vim-transparent'
+  " Plug 'tribela/vim-transparent'
+  
+  Plug 'nvim-lua/plenary.nvim'
+  " Plug 'B4mbus/todo-comments.nvim'
+
+  Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+
+  " Plug 'rmagatti/goto-preview'
+  Plug 'rcarriga/nvim-notify'
+
 call plug#end()
-
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugin Setting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Require plugin config
+" lua require('pluglua')
+
 " Set theme 
 colorscheme dracula
 highlight cType         guifg=#ff79c6   
 highlight nameStructure guifg=#8be9fd 
+" hi Normal guibg=NONE ctermbg=NONE
 
 " Fix sizeof windows
 set winfixwidth
 set winfixheight
-let g:lens#animate = 0
+let g:lens#animate = 1
 let g:lens#height_resize_max = 20
 let g:lens#height_resize_min = 5
-let g:lens#width_resize_max = 80
+let g:lens#width_resize_max = 40
 let g:lens#width_resize_min = 20
 
 " " Overwrite some color highlight 
@@ -268,6 +291,16 @@ let g:lens#width_resize_min = 20
 "   augroup END
 " endif
 
+lua << EOF
+  require('searchbox').setup({
+  })
+  require("notify")("My super important message")
+EOF
+
+" Hung Quang Ok
+" Tran Nguyen Vinn Ngni
+" Ok Quoc Ngu
+
 " Disable automatic comment in newline
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
@@ -278,6 +311,6 @@ hi PmenuThumb ctermbg=250 guibg=#BBBBBB
 
 " Other setting
 for setting_file in split(glob(stdpath('config').'/settings/*.vim'))
-  execute 'source' setting_file
+execute 'source' setting_file
 endfor
 
