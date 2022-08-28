@@ -1,6 +1,6 @@
 let g:airline_powerline_fonts = 1                       " Enable font for status bar
-let g:airline_theme='dracula'                           " Theme OneDark
 " let g:airline_theme='dracula'                           " Theme OneDark
+let g:airline_theme='onedark'                           " Theme OneDark
 
 let g:airline#extensions#tabline#enabled = 1            " Enable Tab bar
 let g:airline#extensions#tabline#left_sep = ' '         " Enable Tab seperator 
@@ -25,4 +25,5 @@ let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = 'ln'
 let g:airline_symbols.maxlinenr = ''
 let g:airline_symbols.dirty='⚡'
-let g:airline_symbols.colnr='col'"let g:airline_theme='dracula'
+
+let g:airline_symbols.colnr='col'"let g:airline_theme='onedark'

@@ -8,12 +8,14 @@ set smarttab
 set listchars=tab:\¦\       " Tab charactor 
 set list
 
-set foldmethod=indent      "fold source code 
+" set foldmethod=indent      "fold source code 
 " set foldnestmax
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
 set foldnestmax=1
 set foldlevelstart=0        
-set autoindent 
-set smartindent
+" set autoindent 
+" set smartindent
 
 set number                  " Show line number
 set number relativenumber   " Enable relativenumber
@@ -29,8 +31,8 @@ set noswapfile
 " Optimize 
 set synmaxcol=200
 set lazyredraw
-au! BufNewFile,BufRead *.json set foldmethod=indent " Change foldmethod for specific filetype
-autocmd FileType vim,c++,txt setlocal foldmethod=indent
+au! BufNewFile,BufRead *.json set foldmethod=expr " Change foldmethod for specific filetype
+autocmd FileType vim,c++,txt setlocal foldmethod=expr
 
 set encoding=UTF-8
 
@@ -147,9 +149,9 @@ nnoremap d<Tab> :Bdelete<CR>
 noremap <C-c> y
 
 " Set quick scroll 
-" set scrolloff=0
-" nnoremap <C-j> 3<C-e>
-" nnoremap <C-k> 3<C-y>
+set scrolloff=0
+nnoremap <C-j> 3<C-e>
+nnoremap <C-k> 3<C-y>
 " noremap <C-e> 3<C-e>
 " noremap <C-y> 3<C-y>
 
@@ -204,8 +206,6 @@ call plug#begin('~/plugged')
   Plug 'jackguo380/vim-lsp-cxx-highlight'       " C/C++
   Plug 'vim-scripts/ifdef-highlighting'         " Highlight
 
-  " Plug 'kendling/taghighlight'
-  " Plug 'jalcine/cmake.vim'
   Plug 'machakann/vim-highlightedyank'          " Highlight copy word
 
 " Code commentary
@@ -224,8 +224,8 @@ call plug#begin('~/plugged')
   Plug 'samoshkin/vim-mergetool'                " Git merge
 
 " Using quick resgister
-  Plug 'nvim-treesitter/nvim-treesitter',       " treesitter lua
-              \{'do': ':TSUpdate'}
+  " Plug 'nvim-treesitter/nvim-treesitter',       " treesitter lua
+  "             \{'do': ':TSUpdate'}
   Plug 'tversteeg/registers.nvim',              " Quick use register 
               \{ 'branch': 'main' } 
 
@@ -240,23 +240,34 @@ call plug#begin('~/plugged')
 
 " Gui in nvim
   Plug 'MunifTanjim/nui.nvim'
-  Plug 'VonHeikemen/searchbox.nvim'
+
+" Gui with search box 
+  " Plug 'VonHeikemen/searchbox.nvim'             " Search Box
+  Plug 'romgrk/searchbox.nvim'
 
 " Comfortable motion moving
-  Plug 'yuttie/comfortable-motion.vim'
+  Plug 'yuttie/comfortable-motion.vim'          " Smooth moving without neovide
 
-" Tran Nguyensparent background
-  " Plug 'xiyaowong/nvim-transparent'   
-  " Plug 'kjwon15/vim-transparent'
-  " Plug 'tribela/vim-transparent'
-  
+" Search file, buffer, etc
+  Plug 'nvim-telescope/telescope.nvim',
+                \{ 'tag': '0.1.0' }
+
   Plug 'nvim-lua/plenary.nvim'
-  " Plug 'B4mbus/todo-comments.nvim'
 
-  Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+" Highlight doxygen
+  Plug 'B4mbus/todo-comments.nvim'              " highlight doxygen
+
+" FIX:Quick got to preview source code 
+" HACK: ok
+" NOTE: ok
+" PERF: ok
+" WARNING: ok
+" TODO: ok
 
   " Plug 'rmagatti/goto-preview'
-  Plug 'rcarriga/nvim-notify'
+
+" Notification
+  Plug 'rcarriga/nvim-notify'                   " Notification 
 
 call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -264,18 +275,20 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Require plugin config
-" lua require('pluglua')
+lua require('pluglua')
 
 " Set theme 
-colorscheme dracula
+colorscheme onedark
+set termguicolors
+set t_Co=256
 highlight cType         guifg=#ff79c6   
-highlight nameStructure guifg=#8be9fd 
+" highlight nameStructure guifg=#8be9fd 
 " hi Normal guibg=NONE ctermbg=NONE
 
 " Fix sizeof windows
 set winfixwidth
 set winfixheight
-let g:lens#animate = 1
+let g:lens#animate = 0
 let g:lens#height_resize_max = 20
 let g:lens#height_resize_min = 5
 let g:lens#width_resize_max = 40
@@ -285,26 +298,20 @@ let g:lens#width_resize_min = 20
 " if (has("autocmd"))
 "   augroup colorextend
 "     autocmd ColorScheme 
-"       \ * call dracula#extend_highlight("Comment",{"fg": {"gui": "#728083"}})
+"       \ * call onedark("Comment",{"fg": {"gui": "#728083"}})
 "     autocmd ColorScheme 
-"       \ * call dracula#extend_highlight("LineNr", {"fg": {"gui": "#728083"}})
+"       \ * call onedark#extend_highlight("LineNr", {"fg": {"gui": "#728083"}})
 "   augroup END
 " endif
 
 lua << EOF
-  require('searchbox').setup({
-  })
   require("notify")("Have a good day !!!")
 EOF
 
-" Hung Quang Ok
-" Tran Nguyen Vinn Ngni
-" Ok Quoc Ngu
-
 " Disable automatic comment in newline
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+" autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-hi Pmenu ctermfg=250 ctermbg=236 guifg=#BBBBBB guibg=#2D2D30
+hi Pmenu ctermfg=250 ctermbg=236 guifg=#BBBBBB guibg=#2D2D30 
 hi PmenuSel ctermfg=250 ctermbg=24 guifg=#BBBBBB guibg=#073655
 hi PmenuSbar ctermbg=237 guibg=#3D3D40
 hi PmenuThumb ctermbg=250 guibg=#BBBBBB

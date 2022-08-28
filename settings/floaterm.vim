@@ -16,7 +16,7 @@ endif
 hi Floaterm guibg=Grey15
 hi FloatermBorder guifg=Orange guibg=DarkGreen
 
-" autocmd User FloatermOpen        " triggered after opening a new/existed floater
+autocmd User FloatermOpen        " triggered after opening a new/existed floater
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Hotkey to manage terminals
