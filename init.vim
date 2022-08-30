@@ -1,28 +1,25 @@
-set mouse=a                 " Enable mouse
+set mouse=a
+set smarttab
 
-set tabstop=4               " Tab space 4
-set shiftwidth=4            " Tab shift 4
+set tabstop=4
+set shiftwidth=4
 set softtabstop=4 expandtab
 set smarttab
 
-set listchars=tab:\¦\       " Tab charactor 
+set listchars=tab:\¦\       " Tab charactor
 set list
 
-" set foldmethod=indent      "fold source code 
+" set foldmethod=indent
 " set foldnestmax
-set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr()
 set foldnestmax=1
-set foldlevelstart=0        
 " set autoindent 
-" set smartindent
+set smartindent
 
 set number                  " Show line number
 set number relativenumber   " Enable relativenumber
 set ignorecase              " Enable case-sensitive 
 set textwidth=40            " Limit number char in line 
 let bclose_multiple = 0
-
 " Disable backup
 set nobackup
 set nowb
@@ -31,8 +28,8 @@ set noswapfile
 " Optimize 
 set synmaxcol=200
 set lazyredraw
-au! BufNewFile,BufRead *.json set foldmethod=expr " Change foldmethod for specific filetype
-autocmd FileType vim,c++,txt setlocal foldmethod=expr
+au! BufNewFile,BufRead *.json set foldmethod=indent " Change foldmethod for specific filetype
+autocmd FileType vim,c++,txt setlocal foldmethod=indent
 
 set encoding=UTF-8
 
@@ -52,12 +49,15 @@ else
 endif
 
 " Setting font size in other windows
-noremap <silent> <C--> <Esc>:set guifont=Droid\ Sans\ Mono\ for\ Powerline:h8<CR>
-noremap <silent> <C-=> <Esc>:set guifont=Droid\ Sans\ Mono\ for\ Powerline:h11<CR>
+set guifont=Fira\ Code:h12
+" set guifont=Droid\ Sans\ Mono\ for\ Powerline:h11
+" noremap <silent> <C--> <Esc>:set guifont=Droid\ Sans\ Mono\ for\ Powerline:h8<CR>
+" noremap <silent> <C-=> <Esc>:set guifont=Droid\ Sans\ Mono\ for\ Powerline:h11<CR>
 
 " Auto reload content changed outside
 au CursorHold,CursorHoldI * checktime
 au FocusGained,BufEnter * :checktime
+autocmd CursorHold * silent call CocActionAsync('highlight')
 autocmd FocusGained,BufEnter,CursorHold,CursorHoldI *
     \ if mode() !~ '\v(c|r.?|!|t)' && getcmdwintype() == ''
       \ | checktime 
@@ -82,9 +82,10 @@ vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 " Set <space> is key leader
 let mapleader=","
 
+"FIX:mode delete line
+noremap dd dd<esc>
+
 " Unhightlight
-" noremap <leader><Space> :noh<CR>  
-" map <Leader><Space> :let @/=''<CR>
 noremap <leader><leader> :noh<CR>
 
 " Set cursor move begin and end line
@@ -127,10 +128,6 @@ noremap N :set hlsearch<cr>N
 noremap / :set hlsearch<cr>/
 noremap ? :set hlsearch<cr>?
 
-"replace quick
-" noremap <leader>r :s/
-" noremap <leader>g :%s/
-
 " Toggle relative line numbers and regular line numbers.
 nnoremap <F12> :set relativenumber!<CR>
 inoremap <F12> <C-o>:set relativenumber!<CR>
@@ -152,11 +149,18 @@ noremap <C-c> y
 set scrolloff=0
 nnoremap <C-j> 3<C-e>
 nnoremap <C-k> 3<C-y>
-" noremap <C-e> 3<C-e>
-" noremap <C-y> 3<C-y>
 
 " Set argument array
 nnoremap <silent> <leader>ar :ArgWrap<CR>
+
+" Set close 
+noremap dv <C-W>o
+
+" Set paste in insert mode
+inoremap <C-v> <C-R>*
+
+" Adjust size window NerdTree
+nnoremap <C-a> <C-w><C-l><C-w><C-h>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugin list
@@ -176,9 +180,9 @@ call plug#begin('~/plugged')
   Plug 'unkiwii/vim-nerdtree-sync'              " Sync current file 
 
 " File search
-  Plug 'junegunn/fzf', 
-    \ { 'do': { -> fzf#install() } }            " Fuzzy finder 
-  Plug 'junegunn/fzf.vim'
+  " Plug 'junegunn/fzf', 
+  "   \ { 'do': { -> fzf#install() } }            " Fuzzy finder 
+  " Plug 'junegunn/fzf.vim'
   " Plug 'yuki-yano/fzf-preview.vim', { 'branch': 'release/rpc' }
 
 " Status bar
@@ -189,13 +193,13 @@ call plug#begin('~/plugged')
   Plug 'voldikss/vim-floaterm'                  " Float terminal
 
 " Code intellisense
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}                    " Language server protocol (LSP) 
+  Plug 'neoclide/coc.nvim', {'branch': 'release'} " Language server protocol (LSP) 
   Plug 'pappasam/coc-jedi',                     " Jedi language server 
   Plug 'jiangmiao/auto-pairs'                   " Parenthesis auto 
 
   "Plug 'alvan/vim-closetag'
   Plug 'frazrepo/vim-rainbow'
-  Plug 'mattn/emmet-vim' 
+  " Plug 'mattn/emmet-vim' 
   Plug 'preservim/nerdcommenter'                " Comment code 
   Plug 'liuchengxu/vista.vim'                   " Function tag bar 
 
@@ -204,8 +208,7 @@ call plug#begin('~/plugged')
 
 " Code syntax highlight
   Plug 'jackguo380/vim-lsp-cxx-highlight'       " C/C++
-  Plug 'vim-scripts/ifdef-highlighting'         " Highlight
-
+  " Plug 'vim-scripts/ifdef-highlighting'         " Highlight
   Plug 'machakann/vim-highlightedyank'          " Highlight copy word
 
 " Code commentary
@@ -219,9 +222,10 @@ call plug#begin('~/plugged')
 " Source code version control 
   Plug 'tpope/vim-fugitive'                     " Git infomation 
   Plug 'rhysd/git-messenger.vim'                " Git messenger
-  Plug 'tpope/vim-rhubarb' 
-  " Plug 'airblade/vim-gitgutter'                 " Git show changes 
-  Plug 'samoshkin/vim-mergetool'                " Git merge
+  " Plug 'tpope/vim-rhubarb' 
+  Plug 'kdheepak/lazygit.nvim'                  " Lazy git 
+  Plug 'airblade/vim-gitgutter'                 " Git show changes 
+  " Plug 'samoshkin/vim-mergetool'                " Git merge
 
 " Using quick resgister
   " Plug 'nvim-treesitter/nvim-treesitter',       " treesitter lua
@@ -242,8 +246,10 @@ call plug#begin('~/plugged')
   Plug 'MunifTanjim/nui.nvim'
 
 " Gui with search box 
-  " Plug 'VonHeikemen/searchbox.nvim'             " Search Box
-  Plug 'romgrk/searchbox.nvim'
+  Plug 'VonHeikemen/searchbox.nvim'             " Search Box
+
+" Quick scope word
+  Plug 'unblevable/quick-scope'
 
 " Comfortable motion moving
   Plug 'yuttie/comfortable-motion.vim'          " Smooth moving without neovide
@@ -264,10 +270,14 @@ call plug#begin('~/plugged')
 " WARNING: ok
 " TODO: ok
 
-  " Plug 'rmagatti/goto-preview'
+" Underline same word
+  Plug 'yamatsum/nvim-cursorline'
 
 " Notification
   Plug 'rcarriga/nvim-notify'                   " Notification 
+
+" Start up
+  Plug 'startup-nvim/startup.nvim'
 
 call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -289,9 +299,9 @@ highlight cType         guifg=#ff79c6
 set winfixwidth
 set winfixheight
 let g:lens#animate = 0
-let g:lens#height_resize_max = 20
+let g:lens#height_resize_max = 40
 let g:lens#height_resize_min = 5
-let g:lens#width_resize_max = 40
+let g:lens#width_resize_max = 80
 let g:lens#width_resize_min = 20
 
 " " Overwrite some color highlight 
@@ -309,7 +319,7 @@ lua << EOF
 EOF
 
 " Disable automatic comment in newline
-" autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 hi Pmenu ctermfg=250 ctermbg=236 guifg=#BBBBBB guibg=#2D2D30 
 hi PmenuSel ctermfg=250 ctermbg=24 guifg=#BBBBBB guibg=#073655

@@ -1,12 +1,15 @@
-"let g:floaterm_keymap_new    = '<F8>'
-"let g:floaterm_keymap_prev   = '<F9>'
-"let g:floaterm_keymap_next   = '<F10>'
-"let g:floaterm_keymap_toggle = '<F12>'
+" let g:floaterm_keymap_new    = '<F1>'
+" let g:floaterm_keymap_prev   = '<F2>'
+" let g:floaterm_keymap_next   = '<F3>'
+" let g:floaterm_keymap_toggle = '<F4>'
 let g:floaterm_position = 'topright'
 let g:floaterm_width = 0.7
 let g:floaterm_height = 0.7
 let g:floaterm_title = 'Terminal $1/$2'
 let g:floaterm_wintype = 'float'
+let g:floaterm_wintitle=0
+let g:floaterm_autoclose=1
+let g:floaterm_autoinsert=1
 let g:floaterm_rootmarkers = ['.pro']
 if has('win32')
 	let g:floaterm_shell = 'powershell -nologo'
@@ -14,7 +17,7 @@ endif
 
 " Set color
 hi Floaterm guibg=Grey15
-hi FloatermBorder guifg=Orange guibg=DarkGreen
+hi FloatermBorder ctermfg=250 ctermbg=24 guifg=#BBBBBB guibg=#073655
 
 autocmd User FloatermOpen        " triggered after opening a new/existed floater
 
@@ -46,9 +49,22 @@ nnoremap <silent> <leader>ts :FloatermShow<CR>
 nnoremap <silent> <leader>tf <C-\><C-n><C-W><Left>
 tnoremap <silent> <leader>tf <C-\><C-n><C-W><Left>
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Hotkey to run other console apps
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Git 
-nnoremap <silent> <leader>gl :FloatermNew! --position=bottomright --height=0.7 --width=0.7 --title='GitLog' git log<CR>
+" nnoremap <silent> <leader>gl :FloatermNew! --position=bottomright --height=0.7 --width=0.7 --title='GitLog' git log<CR>
+" let g:which_key_map.t = {
+"       \ 'name' : '+terminal' ,
+"       \ ';' : [':FloatermNew --wintype=popup --height=6'        , 'terminal'],
+"       \ 'f' : [':FloatermNew fzf'                               , 'fzf'],
+"       \ 'g' : [':FloatermNew lazygit'                           , 'git'],
+"       \ 'd' : [':FloatermNew lazydocker'                        , 'docker'],
+"       \ 'n' : [':FloatermNew node'                              , 'node'],
+"       \ 'N' : [':FloatermNew nnn'                               , 'nnn'],
+"       \ 'p' : [':FloatermNew python'                            , 'python'],
+"       \ 'r' : [':FloatermNew ranger'                            , 'ranger'],
+"       \ 't' : [':FloatermToggle'                                , 'toggle'],
+"       \ 'y' : [':FloatermNew ytop'                              , 'ytop'],
+"       \ 's' : [':FloatermNew ncdu'                              , 'ncdu'],
+"       \ }

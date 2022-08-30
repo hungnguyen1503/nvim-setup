@@ -1,6 +1,8 @@
 if has('nvim')
     noremap <silent> <C-j>   :call comfortable_motion#flick(80)<CR>
     noremap <silent> <C-k> :call comfortable_motion#flick(-80)<CR>
+    noremap <silent> <C-e>   :call comfortable_motion#flick(80)<CR>
+    noremap <silent> <C-y> :call comfortable_motion#flick(-80)<CR>
     noremap <silent> <ScrollWheelUp>   :call comfortable_motion#flick(-80)<CR>
     noremap <silent> <ScrollWheelDown> :call comfortable_motion#flick(80)<CR>
 
@@ -10,8 +12,8 @@ if has('nvim')
     " let g:comfortable_motion_friction = 0.0
     " let g:comfortable_motion_air_drag = 4.0
 
-    let g:comfortable_motion_friction = 0.0
-    let g:comfortable_motion_air_drag = 15.0
+    let g:comfortable_motion_friction = 4.0
+    let g:comfortable_motion_air_drag = 10.0
 
     let g:comfortable_motion_no_default_key_mappings = 1
     let g:comfortable_motion_impulse_multiplier = 1  " Feel free to increase/decrease this value.

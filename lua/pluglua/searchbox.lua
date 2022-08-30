@@ -1,3 +1,5 @@
+local params = vim.lsp.util.make_position_params()
+
  require('searchbox').setup({
   defaults = {
     reverse = false,
@@ -9,12 +11,12 @@
     show_matches = false,
   },
   popup = {
-    -- relative = "cursor",
     relative = 'win',
     position = {
       row = '50%',
       col = '50%',
     },
+
     size = 30,
     border = {
       style = 'rounded',
