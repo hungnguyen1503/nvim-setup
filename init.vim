@@ -121,9 +121,6 @@ noremap <silent> <C-h> <C-w><C-h>
 " noremap <C-k> <C-w><C-k>
 " noremap <C-j> <C-w><C-j>
 
-" Search current word undercursor
-noremap <silent><A-/> yiw<cmd>:SearchBoxIncSearch<C-r>*<CR>
-
 " Unhightlight after search
 autocmd cursorhold * set nohlsearch
 noremap n :set hlsearch<cr>n
