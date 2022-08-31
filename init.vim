@@ -162,6 +162,16 @@ inoremap <C-v> <C-R>*
 " Adjust size window NerdTree
 nnoremap <C-a> <C-w><C-l><C-w><C-h>
 
+" Save file
+nnoremap <silent> <C-s> <ESC>:w<CR>:lua require("notify")("Saving file ...")<CR>
+inoremap <silent> <C-s> <ESC>:w<CR>:lua require("notify")("Saving file ...")<CR>
+
+" Reload settings file
+nnoremap <silent> <leader>s <ESC>:w<CR>:source%<CR>:lua require("notify")("Reloading settings file ...")<CR>
+
+" Prevent copy visualmode 
+vnoremap <silent>p p:let @+=@0<CR>:let @"=@0<CR>" inoremap <silent>p p:let @+=@0<CR>:let @"=@0<CR>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugin list
 " (used with Vim-plug - https://github.com/junegunn/vim-plug)
@@ -174,16 +184,14 @@ call plug#begin('~/plugged')
 " File browser
   Plug 'preservim/nerdTree'                     " File browser  
   Plug 'Xuyuanp/nerdtree-git-plugin'            " Git status
+
+" Icon in nvim
   Plug 'ryanoasis/vim-devicons'                 " Icon
+  Plug 'kyazdani42/nvim-web-devicons'
+
   Plug 'tiagofumo'
           \ .'/vim-nerdtree-syntax-highlight'
   Plug 'unkiwii/vim-nerdtree-sync'              " Sync current file 
-
-" File search
-  " Plug 'junegunn/fzf', 
-  "   \ { 'do': { -> fzf#install() } }            " Fuzzy finder 
-  " Plug 'junegunn/fzf.vim'
-  " Plug 'yuki-yano/fzf-preview.vim', { 'branch': 'release/rpc' }
 
 " Status bar
   Plug 'vim-airline/vim-airline'
@@ -228,8 +236,6 @@ call plug#begin('~/plugged')
   " Plug 'samoshkin/vim-mergetool'                " Git merge
 
 " Using quick resgister
-  " Plug 'nvim-treesitter/nvim-treesitter',       " treesitter lua
-  "             \{'do': ':TSUpdate'}
   Plug 'tversteeg/registers.nvim',              " Quick use register 
               \{ 'branch': 'main' } 
 
@@ -257,6 +263,7 @@ call plug#begin('~/plugged')
 " Search file, buffer, etc
   Plug 'nvim-telescope/telescope.nvim',
                 \{ 'tag': '0.1.0' }
+  Plug 'nvim-telescope/telescope-file-browser.nvim'
 
   Plug 'nvim-lua/plenary.nvim'
 
@@ -291,7 +298,7 @@ lua require('pluglua')
 colorscheme onedark
 set termguicolors
 set t_Co=256
-highlight cType         guifg=#ff79c6   
+" highlight cType         guifg=#ff79c6   
 " highlight nameStructure guifg=#8be9fd 
 " hi Normal guibg=NONE ctermbg=NONE
 
@@ -314,8 +321,9 @@ let g:lens#width_resize_min = 20
 "   augroup END
 " endif
 
+" vim.notify = require("notify")
 lua << EOF
-  require("notify")("Have a good day !!!")
+require("notify")("Have a good day !!!")
 EOF
 
 " Disable automatic comment in newline
