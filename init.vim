@@ -112,14 +112,17 @@ nnoremap <space>o o<ESC>
 nnoremap <space>O O<ESC>
 
 " Switch Buffer
-nnoremap <space><Tab> :bnext<CR>
-nnoremap <space><S-Tab> :bprevious<CR>
+nnoremap <silent> <space><Tab> :bnext<CR>
+nnoremap <silent> <space><S-Tab> :bprevious<CR>
 
 " Switch windows in vim
-noremap <C-l> <C-w><C-l>
-noremap <C-h> <C-w><C-h>
+noremap <silent> <C-l> <C-w><C-l>
+noremap <silent> <C-h> <C-w><C-h>
 " noremap <C-k> <C-w><C-k>
 " noremap <C-j> <C-w><C-j>
+
+" Search current word undercursor
+noremap <silent><A-/> yiw<cmd>:SearchBoxIncSearch<C-r>*<CR>
 
 " Unhightlight after search
 autocmd cursorhold * set nohlsearch
@@ -129,8 +132,8 @@ noremap / :set hlsearch<cr>/
 noremap ? :set hlsearch<cr>?
 
 " Toggle relative line numbers and regular line numbers.
-nnoremap <F12> :set relativenumber!<CR>
-inoremap <F12> <C-o>:set relativenumber!<CR>
+nnoremap <silent> <F12> :set relativenumber!<CR>
+inoremap <silent> <F12> <C-o>:set relativenumber!<CR>
 
 " Color current line
 set cursorline
@@ -140,7 +143,7 @@ nnoremap <silent>gt <C-]>
 nnoremap <silent>gb <C-t>
 
 " Set buffer Delete without windows
-nnoremap d<Tab> :Bdelete<CR>
+nnoremap <silent> d<Tab> :Bdelete<CR>
 
 " Set copy such as win-os
 noremap <C-c> y
