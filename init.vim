@@ -113,17 +113,17 @@ nnoremap <silent> <space><Tab> :w<CR>:bnext<CR>
 nnoremap <silent> <space><S-Tab> :w<CR>:bprevious<CR>
 
 " Switch windows in vim
-noremap <silent> <C-l> <C-w><C-l>
-noremap <silent> <C-h> <C-w><C-h>
+noremap <C-l> <C-w><C-l>
+noremap <C-h> <C-w><C-h>
 " noremap <C-k> <C-w><C-k>
 " noremap <C-j> <C-w><C-j>
 
 " Unhightlight after search
 autocmd cursorhold * set nohlsearch
-noremap n :set hlsearch<cr>n
-noremap N :set hlsearch<cr>N
-noremap / :set hlsearch<cr>/
-noremap ? :set hlsearch<cr>?
+noremap <silent> n :set hlsearch<cr>n
+noremap <silent> N :set hlsearch<cr>N
+noremap <silent> / :set hlsearch<cr>/
+noremap <silent> ? :set hlsearch<cr>?
 
 " Toggle relative line numbers and regular line numbers.
 nnoremap <silent> <F12> :set relativenumber!<CR>
@@ -289,16 +289,13 @@ call plug#end()
 " => Plugin Setting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Require plugin config
-lua require('pluglua')
-
 " Set theme 
 colorscheme onedark
 set termguicolors
 set t_Co=256
-" highlight cType         guifg=#ff79c6   
-" highlight nameStructure guifg=#8be9fd 
-" hi Normal guibg=NONE ctermbg=NONE
+
+" Require plugin config
+lua require('pluglua')
 
 lua <<EOF
 require("notify")("Welcome back NeoVim","info",{title="R-car Vision 2"})
@@ -312,16 +309,6 @@ let g:lens#height_resize_max = 40
 let g:lens#height_resize_min = 5
 let g:lens#width_resize_max = 80
 let g:lens#width_resize_min = 20
-
-" " Overwrite some color highlight 
-" if (has("autocmd"))
-"   augroup colorextend
-"     autocmd ColorScheme 
-"       \ * call onedark("Comment",{"fg": {"gui": "#728083"}})
-"     autocmd ColorScheme 
-"       \ * call onedark#extend_highlight("LineNr", {"fg": {"gui": "#728083"}})
-"   augroup END
-" endif
 
 " Disable automatic comment in newline
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
