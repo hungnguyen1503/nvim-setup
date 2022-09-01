@@ -18,7 +18,7 @@ set smartindent
 set number                  " Show line number
 set number relativenumber   " Enable relativenumber
 set ignorecase              " Enable case-sensitive 
-set textwidth=40            " Limit number char in line 
+set textwidth=80            " Limit number char in line 
 let bclose_multiple = 0
 " Disable backup
 set nobackup
@@ -29,7 +29,7 @@ set noswapfile
 set synmaxcol=200
 set lazyredraw
 au! BufNewFile,BufRead *.json set foldmethod=indent " Change foldmethod for specific filetype
-autocmd FileType vim,c++,txt setlocal foldmethod=indent
+autocmd FileType vim,c,txt setlocal foldmethod=indent
 
 set encoding=UTF-8
 
@@ -112,8 +112,8 @@ nnoremap <space>o o<ESC>
 nnoremap <space>O O<ESC>
 
 " Switch Buffer
-nnoremap <silent> <space><Tab> :bnext<CR>
-nnoremap <silent> <space><S-Tab> :bprevious<CR>
+nnoremap <silent> <space><Tab> :w<CR>:bnext<CR>
+nnoremap <silent> <space><S-Tab> :w<CR>:bprevious<CR>
 
 " Switch windows in vim
 noremap <silent> <C-l> <C-w><C-l>
@@ -163,11 +163,11 @@ inoremap <C-v> <C-R>*
 nnoremap <C-a> <C-w><C-l><C-w><C-h>
 
 " Save file
-nnoremap <silent> <C-s> <ESC>:w<CR>:lua require("notify")("Saving file ...")<CR>
-inoremap <silent> <C-s> <ESC>:w<CR>:lua require("notify")("Saving file ...")<CR>
+nnoremap <silent> <C-s> <ESC>:w<CR>:lua require("notify")("Save successfull ", "info",{title = "Save file "})<CR>
+inoremap <silent> <C-s> <ESC>:w<CR>:lua require("notify")("Save successfull ", "info",{title = "Save file "})<CR>
 
 " Reload settings file
-nnoremap <silent> <leader>s <ESC>:w<CR>:source%<CR>:lua require("notify")("Reloading settings file ...")<CR>
+nnoremap <silent> <leader>s <ESC>:w<CR>:source%<CR>:lua require("notify")("Reload successfull 勒", "info",{title = "Reload file setting "})<CR>
 
 " Prevent copy visualmode 
 vnoremap <silent>p p:let @+=@0<CR>:let @"=@0<CR>" inoremap <silent>p p:let @+=@0<CR>:let @"=@0<CR>
@@ -265,6 +265,7 @@ call plug#begin('~/plugged')
                 \{ 'tag': '0.1.0' }
   Plug 'nvim-telescope/telescope-file-browser.nvim'
 
+" UI in nvim
   Plug 'nvim-lua/plenary.nvim'
 
 " Highlight doxygen
@@ -302,6 +303,10 @@ set t_Co=256
 " highlight nameStructure guifg=#8be9fd 
 " hi Normal guibg=NONE ctermbg=NONE
 
+lua <<EOF
+require("notify")("Welcome back NeoVim","info",{title="R-car Vision 2"})
+EOF
+
 " Fix sizeof windows
 set winfixwidth
 set winfixheight
@@ -320,11 +325,6 @@ let g:lens#width_resize_min = 20
 "       \ * call onedark#extend_highlight("LineNr", {"fg": {"gui": "#728083"}})
 "   augroup END
 " endif
-
-" vim.notify = require("notify")
-lua << EOF
-require("notify")("Have a good day !!!")
-EOF
 
 " Disable automatic comment in newline
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
