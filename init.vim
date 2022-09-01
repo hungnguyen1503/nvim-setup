@@ -82,9 +82,6 @@ vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 " Set <space> is key leader
 let mapleader=","
 
-"FIX:mode delete line
-noremap dd dd<esc>
-
 " Unhightlight
 noremap <leader><leader> :noh<CR>
 
