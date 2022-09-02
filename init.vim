@@ -30,7 +30,6 @@ set synmaxcol=200
 set lazyredraw
 au! BufNewFile,BufRead *.json set foldmethod=indent " Change foldmethod for specific filetype
 autocmd FileType vim,c,txt setlocal foldmethod=indent
-
 set encoding=UTF-8
 
 " Set format of tab name
@@ -150,8 +149,11 @@ nnoremap <C-k> 3<C-y>
 " Set argument array
 nnoremap <silent> <leader>ar :ArgWrap<CR>
 
-" Set close 
-noremap dv <C-W>o
+" Set close window
+noremap cv <C-W>o
+
+" Set split window
+noremap <silent> sp <cmd>:sp<CR>
 
 " Set paste in insert mode
 inoremap <C-v> <C-R>*
@@ -206,7 +208,7 @@ call plug#begin('~/plugged')
   Plug 'frazrepo/vim-rainbow'
   " Plug 'mattn/emmet-vim' 
   Plug 'preservim/nerdcommenter'                " Comment code 
-  Plug 'liuchengxu/vista.vim'                   " Function tag bar 
+  " Plug 'liuchengxu/vista.vim'                   " Function tag bar 
 
   " Plug 'webastien/vim-ctags'
   Plug 'moll/vim-bbye'                          " Delete buffer without close windows
