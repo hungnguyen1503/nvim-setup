@@ -30,7 +30,6 @@ set synmaxcol=200
 set lazyredraw
 au! BufNewFile,BufRead *.json set foldmethod=indent " Change foldmethod for specific filetype
 autocmd FileType vim,c,txt setlocal foldmethod=indent
-
 set encoding=UTF-8
 
 " Set format of tab name
@@ -82,9 +81,6 @@ vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 " Set <space> is key leader
 let mapleader=","
 
-"FIX:mode delete line
-noremap dd dd<esc>
-
 " Unhightlight
 noremap <leader><leader> :noh<CR>
 
@@ -116,17 +112,17 @@ nnoremap <silent> <space><Tab> :w<CR>:bnext<CR>
 nnoremap <silent> <space><S-Tab> :w<CR>:bprevious<CR>
 
 " Switch windows in vim
-noremap <silent> <C-l> <C-w><C-l>
-noremap <silent> <C-h> <C-w><C-h>
+noremap <C-l> <C-w><C-l>
+noremap <C-h> <C-w><C-h>
 " noremap <C-k> <C-w><C-k>
 " noremap <C-j> <C-w><C-j>
 
 " Unhightlight after search
 autocmd cursorhold * set nohlsearch
-noremap n :set hlsearch<cr>n
-noremap N :set hlsearch<cr>N
-noremap / :set hlsearch<cr>/
-noremap ? :set hlsearch<cr>?
+noremap <silent> n :set hlsearch<cr>n
+noremap <silent> N :set hlsearch<cr>N
+noremap <silent> / :set hlsearch<cr>/
+noremap <silent> ? :set hlsearch<cr>?
 
 " Toggle relative line numbers and regular line numbers.
 nnoremap <silent> <F12> :set relativenumber!<CR>
@@ -153,8 +149,11 @@ nnoremap <C-k> 3<C-y>
 " Set argument array
 nnoremap <silent> <leader>ar :ArgWrap<CR>
 
-" Set close 
-noremap dv <C-W>o
+" Set close window
+noremap cv <C-W>o
+
+" Set split window
+noremap <silent> sp <cmd>:sp<CR>
 
 " Set paste in insert mode
 inoremap <C-v> <C-R>*
@@ -209,7 +208,7 @@ call plug#begin('~/plugged')
   Plug 'frazrepo/vim-rainbow'
   " Plug 'mattn/emmet-vim' 
   Plug 'preservim/nerdcommenter'                " Comment code 
-  Plug 'liuchengxu/vista.vim'                   " Function tag bar 
+  " Plug 'liuchengxu/vista.vim'                   " Function tag bar 
 
   " Plug 'webastien/vim-ctags'
   Plug 'moll/vim-bbye'                          " Delete buffer without close windows
@@ -292,16 +291,13 @@ call plug#end()
 " => Plugin Setting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Require plugin config
-lua require('pluglua')
-
 " Set theme 
 colorscheme onedark
 set termguicolors
 set t_Co=256
-" highlight cType         guifg=#ff79c6   
-" highlight nameStructure guifg=#8be9fd 
-" hi Normal guibg=NONE ctermbg=NONE
+
+" Require plugin config
+lua require('pluglua')
 
 lua <<EOF
 require("notify")("Welcome back NeoVim","info",{title="R-car Vision 2"})
@@ -315,16 +311,6 @@ let g:lens#height_resize_max = 40
 let g:lens#height_resize_min = 5
 let g:lens#width_resize_max = 80
 let g:lens#width_resize_min = 20
-
-" " Overwrite some color highlight 
-" if (has("autocmd"))
-"   augroup colorextend
-"     autocmd ColorScheme 
-"       \ * call onedark("Comment",{"fg": {"gui": "#728083"}})
-"     autocmd ColorScheme 
-"       \ * call onedark#extend_highlight("LineNr", {"fg": {"gui": "#728083"}})
-"   augroup END
-" endif
 
 " Disable automatic comment in newline
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
