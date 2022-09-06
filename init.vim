@@ -1,4 +1,4 @@
-set mouse=a
+set mouse=a 
 set smarttab
 
 set tabstop=4
