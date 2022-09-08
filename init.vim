@@ -11,15 +11,16 @@ set list
 
 " set foldmethod=indent
 " set foldnestmax
-set foldnestmax=1
+" set foldnestmax=1
 " set autoindent 
-set smartindent
+" set smartindent
 
 set number                  " Show line number
 set number relativenumber   " Enable relativenumber
 set ignorecase              " Enable case-sensitive 
 set textwidth=80            " Limit number char in line 
 let bclose_multiple = 0
+
 " Disable backup
 set nobackup
 set nowb
@@ -28,8 +29,8 @@ set noswapfile
 " Optimize 
 set synmaxcol=200
 set lazyredraw
-au! BufNewFile,BufRead *.json set foldmethod=indent " Change foldmethod for specific filetype
-autocmd FileType vim,c,txt setlocal foldmethod=indent
+" au! BufNewFile,BufRead *.json set foldmethod=indent " Change foldmethod for specific filetype
+" autocmd FileType vim,c,txt setlocal foldmethod=indent
 set encoding=UTF-8
 
 " Set format of tab name
@@ -49,14 +50,23 @@ endif
 
 " Setting font size in other windows
 set guifont=Fira\ Code:h12
-" set guifont=Droid\ Sans\ Mono\ for\ Powerline:h11
-" noremap <silent> <C--> <Esc>:set guifont=Droid\ Sans\ Mono\ for\ Powerline:h8<CR>
-" noremap <silent> <C-=> <Esc>:set guifont=Droid\ Sans\ Mono\ for\ Powerline:h11<CR>
+let g:flag_font_size = "false"
+function! ChangefontToggle()
+    if g:flag_font_size == "false"
+        let g:flag_font_size="true"
+        set guifont=Fira\ Code:h9
+    else
+        let g:flag_font_size="false"
+        set guifont=Fira\ Code:h12
+    endif
+endfunction
+
+noremap cf :call ChangefontToggle()<CR>
 
 " Auto reload content changed outside
 au CursorHold,CursorHoldI * checktime
 au FocusGained,BufEnter * :checktime
-autocmd CursorHold * silent call CocActionAsync('highlight')
+" autocmd CursorHold * silent call CocActionAsync('highlight')
 autocmd FocusGained,BufEnter,CursorHold,CursorHoldI *
     \ if mode() !~ '\v(c|r.?|!|t)' && getcmdwintype() == ''
       \ | checktime 
@@ -94,28 +104,13 @@ inoremap <A-j> <Down>
 inoremap <A-k> <Up>
 inoremap <A-l> <Right>
 
-" " Switch current line
-" nnoremap <A-j> :m .+1<CR>==
-" nnoremap <A-k> :m .-2<CR>==
- 
-" " Move selection up
-" xmap <A-k> :move '<-2<CR>gv
-" " Move selection down
-" xmap <A-j> :move '>+1<CR>gv
-
 " Insert new blank
 nnoremap <space>o o<ESC>
 nnoremap <space>O O<ESC>
 
-" Switch Buffer
-nnoremap <silent> <space><Tab> :w<CR>:bnext<CR>
-nnoremap <silent> <space><S-Tab> :w<CR>:bprevious<CR>
-
 " Switch windows in vim
 noremap <C-l> <C-w><C-l>
 noremap <C-h> <C-w><C-h>
-" noremap <C-k> <C-w><C-k>
-" noremap <C-j> <C-w><C-j>
 
 " Unhightlight after search
 autocmd cursorhold * set nohlsearch
@@ -130,10 +125,6 @@ inoremap <silent> <F12> <C-o>:set relativenumber!<CR>
 
 " Color current line
 set cursorline
-
-" Set shortcut ctags to coc
-nnoremap <silent>gt <C-]> 
-nnoremap <silent>gb <C-t>
 
 " Set buffer Delete without windows
 nnoremap <silent> d<Tab> :Bdelete<CR>
@@ -158,7 +149,7 @@ noremap <silent> sp <cmd>:sp<CR>
 " Set paste in insert mode
 inoremap <C-v> <C-R>*
 
-" Adjust size window NerdTree
+" Adjust size window menu
 nnoremap <C-a> <C-w><C-l><C-w><C-h>
 
 " Save file
@@ -181,12 +172,11 @@ call plug#begin('~/plugged')
   Plug 'dracula/vim',{'name':'dracula'}
 
 " File browser
-  Plug 'preservim/nerdTree'                     " File browser  
-  Plug 'Xuyuanp/nerdtree-git-plugin'            " Git status
+  Plug 'kyazdani42/nvim-tree.lua'
 
 " Icon in nvim
-  Plug 'ryanoasis/vim-devicons'                 " Icon
-  Plug 'kyazdani42/nvim-web-devicons'
+  Plug 'ryanoasis/vim-devicons'                 " Icon for nvim
+  Plug 'kyazdani42/nvim-web-devicons'           " Icon for telescope
 
   Plug 'tiagofumo'
           \ .'/vim-nerdtree-syntax-highlight'
@@ -201,24 +191,23 @@ call plug#begin('~/plugged')
 
 " Code intellisense
   Plug 'neoclide/coc.nvim', {'branch': 'release'} " Language server protocol (LSP) 
-  Plug 'pappasam/coc-jedi',                     " Jedi language server 
+  Plug 'pappasam/coc-jedi'                      " Jedi language server 
+  " Plug 'folke/lua-dev.nvim'                   " TODO:Check lsp server
+  Plug 'rafcamlet/coc-nvim-lua'                 " Code vim-lua 
+
+" Completion pairs
+  Plug 'frazrepo/vim-rainbow'                   " Color pairs
+  Plug 'tpope/vim-surround'                     " Quick edit pairs
   Plug 'jiangmiao/auto-pairs'                   " Parenthesis auto 
 
-  "Plug 'alvan/vim-closetag'
-  Plug 'frazrepo/vim-rainbow'
-  " Plug 'mattn/emmet-vim' 
-  Plug 'preservim/nerdcommenter'                " Comment code 
-  " Plug 'liuchengxu/vista.vim'                   " Function tag bar 
-
-  " Plug 'webastien/vim-ctags'
   Plug 'moll/vim-bbye'                          " Delete buffer without close windows
 
 " Code syntax highlight
   Plug 'jackguo380/vim-lsp-cxx-highlight'       " C/C++
-  " Plug 'vim-scripts/ifdef-highlighting'         " Highlight
   Plug 'machakann/vim-highlightedyank'          " Highlight copy word
 
 " Code commentary
+  Plug 'preservim/nerdcommenter'                " Comment code
   Plug 'tpope/vim-commentary'
   
 " Debugging
@@ -229,10 +218,8 @@ call plug#begin('~/plugged')
 " Source code version control 
   Plug 'tpope/vim-fugitive'                     " Git infomation 
   Plug 'rhysd/git-messenger.vim'                " Git messenger
-  " Plug 'tpope/vim-rhubarb' 
   Plug 'kdheepak/lazygit.nvim'                  " Lazy git 
   Plug 'airblade/vim-gitgutter'                 " Git show changes 
-  " Plug 'samoshkin/vim-mergetool'                " Git merge
 
 " Using quick resgister
   Plug 'tversteeg/registers.nvim',              " Quick use register 
@@ -251,10 +238,10 @@ call plug#begin('~/plugged')
   Plug 'MunifTanjim/nui.nvim'
 
 " Gui with search box 
-  Plug 'VonHeikemen/searchbox.nvim'             " Search Box
+  Plug 'VonHeikemen/searchbox.nvim'             " Search Box word
 
 " Quick scope word
-  Plug 'unblevable/quick-scope'
+  Plug 'unblevable/quick-scope'                 " Quick search word in current line
 
 " Comfortable motion moving
   Plug 'yuttie/comfortable-motion.vim'          " Smooth moving without neovide
@@ -284,7 +271,16 @@ call plug#begin('~/plugged')
   Plug 'rcarriga/nvim-notify'                   " Notification 
 
 " Start up
-  Plug 'startup-nvim/startup.nvim'
+  Plug 'startup-nvim/startup.nvim'              " Start up with themes
+
+" Bar Bar move tabs
+  Plug 'romgrk/barbar.nvim'                     " Smart manage tabline 
+
+" Add dynamic font scaling
+  Plug 'tenxsoydev/size-matters.nvim'           " Adjust font size 
+
+" Workspace
+  Plug 'nvim-telescope/telescope-project.nvim'  " Manage project
 
 call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -298,9 +294,10 @@ set t_Co=256
 
 " Require plugin config
 lua require('pluglua')
+lua require('init')
 
 lua <<EOF
-require("notify")("Welcome back NeoVim","info",{title="R-car Vision 2"})
+    require("notify")("Welcome back NeoVim","info",{title="R-car Vision 2"})
 EOF
 
 " Fix sizeof windows
