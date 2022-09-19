@@ -1,6 +1,7 @@
-set mouse=a 
-set smarttab
+set mouse=a
+set mousemodel=popup
 
+set smarttab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4 expandtab
@@ -20,6 +21,7 @@ set number relativenumber   " Enable relativenumber
 set ignorecase              " Enable case-sensitive 
 set textwidth=80            " Limit number char in line 
 let bclose_multiple = 0
+set pumheight=12
 
 " Disable backup
 set nobackup
@@ -49,7 +51,7 @@ else
 endif
 
 " Setting font size in other windows
-set guifont=Fira\ Code:h12
+set guifont=Fira\ Code:h11
 let g:flag_font_size = "false"
 function! ChangefontToggle()
     if g:flag_font_size == "false"
@@ -57,13 +59,32 @@ function! ChangefontToggle()
         set guifont=Fira\ Code:h9
     else
         let g:flag_font_size="false"
-        set guifont=Fira\ Code:h12
+        set guifont=Fira\ Code:h11
     endif
 endfunction
-
 noremap cf :call ChangefontToggle()<CR>
 
+" Setting tab 
+let g:flag_tab_space = "false"
+function! ChangeTabSpace()
+    if g:flag_tab_space == "false"
+        let g:flag_tab_space = "true"
+        set tabstop=2
+        set shiftwidth=2
+        set softtabstop=2 expandtab
+        " lua require("notify")("Tab Space is 2","info",{title="Tab Space"})<CR>
+    else
+        let g:flag_tab_space = "false"
+        set tabstop=4
+        set shiftwidth=4
+        set softtabstop=4 expandtab
+        " lua require("notify")("Tab Space is 4","info",{title="Tab Space"})
+    endif
+endfunction
+noremap <leader><Tab> :call ChangeTabSpace()<CR>
+
 " Auto reload content changed outside
+" autocmd User TelescopePreviewerLoaded setlocal wrap
 au CursorHold,CursorHoldI * checktime
 au FocusGained,BufEnter * :checktime
 " autocmd CursorHold * silent call CocActionAsync('highlight')
@@ -80,10 +101,10 @@ autocmd FileChangedShellPost *
 " => Key mappings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
 " Resize pane
-nmap <M-Right> :vertical resize -1<CR>    
-nmap <M-Left> :vertical resize +1<CR>
-nmap <M-Down> :resize +1<CR>
-nmap <M-Up> :resize -1<CR>
+nnoremap <silent> <M-Up>    :call animate#window_delta_height(-10)<CR>
+nnoremap <silent> <M-Down>  :call animate#window_delta_height(10)<CR>
+nnoremap <silent> <M-Left>  :call animate#window_delta_width(10)<CR>
+nnoremap <silent> <M-Right> :call animate#window_delta_width(-10)<CR>
 
 " Search a hightlighted text
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
@@ -111,13 +132,13 @@ nnoremap <space>O O<ESC>
 " Switch windows in vim
 noremap <C-l> <C-w><C-l>
 noremap <C-h> <C-w><C-h>
+noremap <S-j> <C-w><C-j>
+noremap <S-k> <C-w><C-k>
 
 " Unhightlight after search
 autocmd cursorhold * set nohlsearch
-noremap <silent> n :set hlsearch<cr>n
+noremap <silent> n <cmd>:set hlsearch<cr>n
 noremap <silent> N :set hlsearch<cr>N
-noremap <silent> / :set hlsearch<cr>/
-noremap <silent> ? :set hlsearch<cr>?
 
 " Toggle relative line numbers and regular line numbers.
 nnoremap <silent> <F12> :set relativenumber!<CR>
@@ -126,16 +147,13 @@ inoremap <silent> <F12> <C-o>:set relativenumber!<CR>
 " Color current line
 set cursorline
 
-" Set buffer Delete without windows
-nnoremap <silent> d<Tab> :Bdelete<CR>
-
 " Set copy such as win-os
 noremap <C-c> y
 
 " Set quick scroll 
 set scrolloff=0
-nnoremap <C-j> 3<C-e>
-nnoremap <C-k> 3<C-y>
+" nnoremap <C-j> <C-e>
+" nnoremap <C-k> <C-y>
 
 " Set argument array
 nnoremap <silent> <leader>ar :ArgWrap<CR>
@@ -157,7 +175,9 @@ nnoremap <silent> <C-s> <ESC>:w<CR>:lua require("notify")("Save successfull "
 inoremap <silent> <C-s> <ESC>:w<CR>:lua require("notify")("Save successfull ", "info",{title = "Save file "})<CR>
 
 " Reload settings file
-nnoremap <silent> <leader>s <ESC>:w<CR>:source%<CR>:lua require("notify")("Reload successfull 勒", "info",{title = "Reload file setting "})<CR>
+nnoremap <silent> <leader>s <ESC>:w<CR>:source%<CR>
+            \:lua require("notify")("Reload successfull 勒", "info",{title = "Reload file setting "})<CR>
+            \:let g:neovide_fullscreen=v:false<CR>
 
 " Prevent copy visualmode 
 vnoremap <silent>p p:let @+=@0<CR>:let @"=@0<CR>" inoremap <silent>p p:let @+=@0<CR>:let @"=@0<CR>
@@ -169,7 +189,7 @@ vnoremap <silent>p p:let @+=@0<CR>:let @"=@0<CR>" inoremap <silent>p p:let @+=@0
 call plug#begin('~/plugged')
 " Theme
   Plug 'joshdick/onedark.vim',                  " Dark theme
-  Plug 'dracula/vim',{'name':'dracula'}
+  " Plug 'dracula/vim',{'name':'dracula'}
 
 " File browser
   Plug 'kyazdani42/nvim-tree.lua'
@@ -243,9 +263,6 @@ call plug#begin('~/plugged')
 " Quick scope word
   Plug 'unblevable/quick-scope'                 " Quick search word in current line
 
-" Comfortable motion moving
-  Plug 'yuttie/comfortable-motion.vim'          " Smooth moving without neovide
-
 " Search file, buffer, etc
   Plug 'nvim-telescope/telescope.nvim',
                 \{ 'tag': '0.1.0' }
@@ -273,7 +290,6 @@ call plug#begin('~/plugged')
 " Start up
   Plug 'startup-nvim/startup.nvim'              " Start up with themes
 
-" Bar Bar move tabs
   Plug 'romgrk/barbar.nvim'                     " Smart manage tabline 
 
 " Add dynamic font scaling
@@ -282,6 +298,10 @@ call plug#begin('~/plugged')
 " Workspace
   Plug 'nvim-telescope/telescope-project.nvim'  " Manage project
 
+"Smooth Scroll
+  Plug 'karb94/neoscroll.nvim'
+
+  Plug 'folke/trouble.nvim'
 call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugin Setting
@@ -320,5 +340,5 @@ hi PmenuThumb ctermbg=250 guibg=#BBBBBB
 " Other setting
 for setting_file in split(glob(stdpath('config').'/settings/*.vim'))
 execute 'source' setting_file
-endfor
 
+endfor

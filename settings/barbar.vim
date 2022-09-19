@@ -16,7 +16,7 @@ nnoremap <silent>    <A-8> <Cmd>BufferGoto 8<CR>
 nnoremap <silent>    <A-9> <Cmd>BufferGoto 9<CR>
 nnoremap <silent>    <A-0> <Cmd>BufferLast<CR>
 " Pin/unpin buffer
-nnoremap <silent>    <A-p> <Cmd>BufferPin<CR>
+noremap <silent>    <space>p <Cmd>BufferPin<CR>
 " Close buffer
 nnoremap <silent>    <A-c> <Cmd>BufferClose<CR>
 " Wipeout buffer

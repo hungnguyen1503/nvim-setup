@@ -25,10 +25,10 @@ if exists("g:neovide")
     function! Changefullscreen() 
         if g:fullscreen == "false"
             let g:fullscreen = "true"
-            let g:neovide_fullscreen=v:false
+            let g:neovide_fullscreen=v:true
         else
             let g:fullscreen = "false"
-            let g:neovide_fullscreen=v:true
+            let g:neovide_fullscreen=v:false
         endif
     endfunction
 

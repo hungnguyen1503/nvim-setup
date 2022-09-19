@@ -17,24 +17,36 @@ require("telescope").setup{
     layout_strategy = "horizontal",
     wrap_results = true,
     layout_config = {
-    horizontal = {
-        prompt_position = "top",
-          preview_width = 0.55,
-          results_width = 0.8,
+        horizontal = {
+            preview_width = 0.55,
+            results_width = 0.8,
         },
         vertical = {
-          mirror = false,
+            mirror = false,
         },
+        prompt_position = "top",
         width = 0.87,
         height = 0.80,
         preview_cutoff = 120,
-      },
+    },
 
-      extensions = {
-          file_browser = {},
-          project = {},
-      },
+    pickers = {
+        find_files = {
+        },
+        live_grep = {
+        }
+    },
+
+    extensions = {
+        file_browser = {
+        },
+        project = {
+            hidden_files = false, -- default: false
+            theme = 'dropdown'
+        },
+    },
 }
 
 require("telescope").load_extension "file_browser"
 require("telescope").load_extension "project"
+require("telescope").load_extension("notify")

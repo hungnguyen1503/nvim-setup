@@ -1,6 +1,6 @@
 require("notify").setup{
         background_colour = "Normal",
-        fps = 75,
+        fps = 60,
         icons = {
           DEBUG = "",
           ERROR = "",
@@ -10,7 +10,7 @@ require("notify").setup{
         },
         level = 2,
         minimum_width = 35,
-        render = "default",
+        render = "minimal",
         stages = "slide",
-        timeout = 1000
+        timeout = 500
 }
