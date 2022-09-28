@@ -43,7 +43,7 @@ require("nvim-tree").setup {
             relative = "editor",
             border = "rounded",
             width = 30,
-            height = 30,
+            height = 40,
             row = 1,
             col = 1,
           },
@@ -122,14 +122,14 @@ require("nvim-tree").setup {
         args = {},
       },
       diagnostics = {
-        enable = false,
-        show_on_dirs = false,
+        enable = true,
+        show_on_dirs = true,
         debounce_delay = 50,
         icons = {
-          hint = "",
-          info = "",
-          warning = "",
-          error = "",
+          hint = "",
+          info = "",
+          warning = "⚠",
+          error = "",
         },
       },
       filters = {
@@ -145,7 +145,7 @@ require("nvim-tree").setup {
         enable = true,
         ignore = true,
         show_on_dirs = true,
-        timeout = 400,
+        timeout = 300,
       },
       actions = {
         use_system_clipboard = true,
@@ -169,7 +169,7 @@ require("nvim-tree").setup {
         },
         open_file = {
           quit_on_open = false,
-          resize_window = true,
+          resize_window = false,
           window_picker = {
             enable = true,
             chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",

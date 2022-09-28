@@ -8,6 +8,11 @@ require("telescope").setup{
       "--column",
       "--smart-case",
     },
+    defaults = {
+        path_display={"truncate"},
+        wrap_results = "true"
+    },
+    shorten_path=true,
     prompt_prefix = "   ",
     selection_caret = "  ",
     entry_prefix = "  ",
@@ -41,6 +46,7 @@ require("telescope").setup{
         file_browser = {
         },
         project = {
+            display_type = "minimal",
             hidden_files = false, -- default: false
             theme = 'dropdown'
         },

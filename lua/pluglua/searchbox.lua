@@ -2,7 +2,7 @@
   defaults = {
     reverse = false,
     exact = false,
-    prompt = ' ',
+    prompt = '🔍 ',
     modifier = 'disabled',
     confirm = 'off',
     clear_matches = true,
