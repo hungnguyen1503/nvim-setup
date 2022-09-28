@@ -15,11 +15,12 @@ set list
 " set foldnestmax=1
 " set autoindent 
 " set smartindent
-
 set number                  " Show line number
 set number relativenumber   " Enable relativenumber
 set ignorecase              " Enable case-sensitive 
 set textwidth=80            " Limit number char in line 
+set wrap linebreak
+set fo+=t
 let bclose_multiple = 0
 set pumheight=12
 
@@ -31,8 +32,10 @@ set noswapfile
 " Optimize 
 set synmaxcol=200
 set lazyredraw
-" au! BufNewFile,BufRead *.json set foldmethod=indent " Change foldmethod for specific filetype
+" au! BufNewFile,BufRead *.json set foldmethod=indent " Change foldmethod for 
+"             \specific filetype
 " autocmd FileType vim,c,txt setlocal foldmethod=indent
+autocmd User call coc#rpc#request('fillDiagnostics', [bufnr('%')])
 set encoding=UTF-8
 
 " Set format of tab name
@@ -42,44 +45,44 @@ syntax on
 
 " Enable copying from vim to clipboard
 if has('win32')
-  set clipboard=unnamed  
-  set guioptions-=T
-  set guioptions-=r
-  set guioptions-=m
+set clipboard=unnamed  
+set guioptions-=T
+set guioptions-=r
+set guioptions-=m
 else
-  set clipboard=unnamedplus
+set clipboard=unnamedplus
 endif
 
 " Setting font size in other windows
 set guifont=Fira\ Code:h11
 let g:flag_font_size = "false"
 function! ChangefontToggle()
-    if g:flag_font_size == "false"
-        let g:flag_font_size="true"
-        set guifont=Fira\ Code:h9
-    else
-        let g:flag_font_size="false"
-        set guifont=Fira\ Code:h11
-    endif
+if g:flag_font_size == "false"
+    let g:flag_font_size="true"
+    set guifont=Fira\ Code:h9
+else
+    let g:flag_font_size="false"
+    set guifont=Fira\ Code:h11
+endif
 endfunction
 noremap cf :call ChangefontToggle()<CR>
 
 " Setting tab 
 let g:flag_tab_space = "false"
 function! ChangeTabSpace()
-    if g:flag_tab_space == "false"
-        let g:flag_tab_space = "true"
-        set tabstop=2
-        set shiftwidth=2
-        set softtabstop=2 expandtab
-        " lua require("notify")("Tab Space is 2","info",{title="Tab Space"})<CR>
-    else
-        let g:flag_tab_space = "false"
-        set tabstop=4
-        set shiftwidth=4
-        set softtabstop=4 expandtab
-        " lua require("notify")("Tab Space is 4","info",{title="Tab Space"})
-    endif
+if g:flag_tab_space == "false"
+    let g:flag_tab_space = "true"
+    set tabstop=2
+    set shiftwidth=2
+    set softtabstop=2 expandtab
+    " lua require("notify")("Tab Space is 2","info",{title="Tab Space"})<CR>
+else
+    let g:flag_tab_space = "false"
+    set tabstop=4
+    set shiftwidth=4
+    set softtabstop=4 expandtab
+    " lua require("notify")("Tab Space is 4","info",{title="Tab Space"})
+endif
 endfunction
 noremap <leader><Tab> :call ChangeTabSpace()<CR>
 
@@ -89,12 +92,12 @@ au CursorHold,CursorHoldI * checktime
 au FocusGained,BufEnter * :checktime
 " autocmd CursorHold * silent call CocActionAsync('highlight')
 autocmd FocusGained,BufEnter,CursorHold,CursorHoldI *
-    \ if mode() !~ '\v(c|r.?|!|t)' && getcmdwintype() == ''
-      \ | checktime 
-    \ | endif
+\ if mode() !~ '\v(c|r.?|!|t)' && getcmdwintype() == ''
+  \ | checktime 
+\ | endif
 autocmd FileChangedShellPost *
-    \ echohl WarningMsg 
-    \ | echohl None
+\ echohl WarningMsg 
+\ | echohl None
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -113,7 +116,7 @@ vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 let mapleader=","
 
 " Unhightlight
-noremap <leader><leader> :noh<CR>
+noremap <silent> <leader><leader> :noh<CR>
 
 " Set cursor move begin and end line
 noremap <silent><S-h> ^
@@ -139,6 +142,7 @@ noremap <S-k> <C-w><C-k>
 autocmd cursorhold * set nohlsearch
 noremap <silent> n <cmd>:set hlsearch<cr>n
 noremap <silent> N :set hlsearch<cr>N
+let g:cursorhold_updatetime = 200
 
 " Toggle relative line numbers and regular line numbers.
 nnoremap <silent> <F12> :set relativenumber!<CR>
@@ -152,8 +156,8 @@ noremap <C-c> y
 
 " Set quick scroll 
 set scrolloff=0
-" nnoremap <C-j> <C-e>
-" nnoremap <C-k> <C-y>
+" noremap <C-j> <C-e>
+" noremap <C-k> <C-y>
 
 " Set argument array
 nnoremap <silent> <leader>ar :ArgWrap<CR>
@@ -176,8 +180,8 @@ inoremap <silent> <C-s> <ESC>:w<CR>:lua require("notify")("Save successfull "
 
 " Reload settings file
 nnoremap <silent> <leader>s <ESC>:w<CR>:source%<CR>
-            \:lua require("notify")("Reload successfull 勒", "info",{title = "Reload file setting "})<CR>
-            \:let g:neovide_fullscreen=v:false<CR>
+        \:lua require("notify")("Reload successfull 勒", "info",{title = "Reload file setting "})<CR>
+        \:let g:neovide_fullscreen=v:false<CR>
 
 " Prevent copy visualmode 
 vnoremap <silent>p p:let @+=@0<CR>:let @"=@0<CR>" inoremap <silent>p p:let @+=@0<CR>:let @"=@0<CR>
@@ -188,77 +192,75 @@ vnoremap <silent>p p:let @+=@0<CR>:let @"=@0<CR>" inoremap <silent>p p:let @+=@0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin('~/plugged')
 " Theme
-  Plug 'joshdick/onedark.vim',                  " Dark theme
-  " Plug 'dracula/vim',{'name':'dracula'}
+Plug 'joshdick/onedark.vim',                  " Dark theme
+" Plug 'dracula/vim',{'name':'dracula'}
 
 " File browser
-  Plug 'kyazdani42/nvim-tree.lua'
+Plug 'kyazdani42/nvim-tree.lua'
 
 " Icon in nvim
-  Plug 'ryanoasis/vim-devicons'                 " Icon for nvim
-  Plug 'kyazdani42/nvim-web-devicons'           " Icon for telescope
-
-  Plug 'tiagofumo'
-          \ .'/vim-nerdtree-syntax-highlight'
-  Plug 'unkiwii/vim-nerdtree-sync'              " Sync current file 
+Plug 'ryanoasis/vim-devicons'                 " Icon for nvim
+Plug 'kyazdani42/nvim-web-devicons'           " Icon for telescope
 
 " Status bar
-  Plug 'vim-airline/vim-airline'
-  Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " Terminal
-  Plug 'voldikss/vim-floaterm'                  " Float terminal
+Plug 'voldikss/vim-floaterm'                  " Float terminal
 
 " Code intellisense
-  Plug 'neoclide/coc.nvim', {'branch': 'release'} " Language server protocol (LSP) 
-  Plug 'pappasam/coc-jedi'                      " Jedi language server 
-  " Plug 'folke/lua-dev.nvim'                   " TODO:Check lsp server
-  Plug 'rafcamlet/coc-nvim-lua'                 " Code vim-lua 
+Plug 'neoclide/coc.nvim', {'branch': 'release'} " Language server protocol (LSP) 
+Plug 'pappasam/coc-jedi'                      " Jedi language server 
+" Plug 'folke/lua-dev.nvim'                   " TODO:Check lsp server
+Plug 'rafcamlet/coc-nvim-lua'                 " Code vim-lua 
 
 " Completion pairs
-  Plug 'frazrepo/vim-rainbow'                   " Color pairs
-  Plug 'tpope/vim-surround'                     " Quick edit pairs
-  Plug 'jiangmiao/auto-pairs'                   " Parenthesis auto 
+Plug 'frazrepo/vim-rainbow'                   " Color pairs
+" Plug 'tpope/vim-surround'                     " Quick edit 'pairs'''
+Plug 'kylechui/nvim-surround'
+Plug 'jiangmiao/auto-pairs'                   " Parenthesis auto 
 
-  Plug 'moll/vim-bbye'                          " Delete buffer without close windows
+Plug 'moll/vim-bbye'                          " Delete buffer without close windows
 
 " Code syntax highlight
-  Plug 'jackguo380/vim-lsp-cxx-highlight'       " C/C++
-  Plug 'machakann/vim-highlightedyank'          " Highlight copy word
+Plug 'jackguo380/vim-lsp-cxx-highlight'       " C/C++
+Plug 'machakann/vim-highlightedyank'          " Highlight copy word
 
 " Code commentary
-  Plug 'preservim/nerdcommenter'                " Comment code
-  Plug 'tpope/vim-commentary'
-  
+Plug 'preservim/nerdcommenter'                " Comment code
+Plug 'tpope/vim-commentary'
+
 " Debugging
-  " Plug 'puremourning/vimspector'                " Vimspector
-  Plug 'camspiers/animate.vim'
-  Plug 'camspiers/lens.vim'
+" Plug 'puremourning/vimspector'                " Vimspector
+Plug 'camspiers/animate.vim'
+Plug 'camspiers/lens.vim'
 
 " Source code version control 
-  Plug 'tpope/vim-fugitive'                     " Git infomation 
-  Plug 'rhysd/git-messenger.vim'                " Git messenger
-  Plug 'kdheepak/lazygit.nvim'                  " Lazy git 
-  Plug 'airblade/vim-gitgutter'                 " Git show changes 
+Plug 'tpope/vim-fugitive'                     " Git infomation 
+Plug 'rhysd/git-messenger.vim'                " Git messenger
+Plug 'kdheepak/lazygit.nvim'                  " Lazy git 
+Plug 'airblade/vim-gitgutter'                 " Git show changes 
 
 " Using quick resgister
-  Plug 'tversteeg/registers.nvim',              " Quick use register 
-              \{ 'branch': 'main' } 
+Plug 'tversteeg/registers.nvim',              " Quick use register 
+          \{ 'branch': 'main' } 
 
 " Quick replace
-  Plug 'kqito/vim-easy-replace'                 " Easy to replace something 
+Plug 'kqito/vim-easy-replace'                 " Easy to replace something 
 
 " Smart move
-  Plug 'matze/vim-move'                         " Quick move 
+Plug 'matze/vim-move'                         " Quick move 
 
 " ArgWrap argument
-  Plug 'foosoft/vim-argwrap'                    " Divide element in array
+Plug 'foosoft/vim-argwrap'                    " Divide element in array
 
 " Gui in nvim
-  Plug 'MunifTanjim/nui.nvim'
+Plug 'MunifTanjim/nui.nvim'
 
 " Gui with search box 
-  Plug 'VonHeikemen/searchbox.nvim'             " Search Box word
+Plug 'VonHeikemen/searchbox.nvim'             " Search Box word
+  " Plug 'romgrk/searchbox.nvim'             " Search Box word
 
 " Quick scope word
   Plug 'unblevable/quick-scope'                 " Quick search word in current line
@@ -301,7 +303,12 @@ call plug#begin('~/plugged')
 "Smooth Scroll
   Plug 'karb94/neoscroll.nvim'
 
-  Plug 'folke/trouble.nvim'
+  " Plug 'folke/trouble.nvim'
+  Plug 'arafatamim/trouble.nvim'
+
+  Plug 'antoinemadec/FixCursorHold.nvim'
+
+  " Plug 'wellle/targets.vim'
 call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugin Setting
@@ -342,3 +349,4 @@ for setting_file in split(glob(stdpath('config').'/settings/*.vim'))
 execute 'source' setting_file
 
 endfor
+

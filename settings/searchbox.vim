@@ -17,3 +17,13 @@ noremap <silent> <leader>rv  y:SearchBoxReplace confirm=menu -- <C-r>"<CR>
 noremap <silent> <leader>ry :SearchBoxReplace confirm=menu<CR>
 " :SearchBoxReplace confirm=menu visual_mode=true<CR>
 
+" Anh Nguyen Quang
+" Nguyen
+" Quang
+" Anh
+" TRan 
+" vinh
+" Nghi
+" Hung
+" Hung
+

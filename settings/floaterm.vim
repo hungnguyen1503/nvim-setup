@@ -3,11 +3,11 @@
 " let g:floaterm_keymap_next   = '<F3>'
 " let g:floaterm_keymap_toggle = '<F4>'
 let g:floaterm_position = 'topright'
-let g:floaterm_width = 0.7
-let g:floaterm_height = 0.7
+let g:floaterm_width = 0.8
+let g:floaterm_height = 0.8
 let g:floaterm_title = 'Terminal $1/$2'
-let g:floaterm_wintype = 'float'
-let g:floaterm_wintitle=0
+let g:floaterm_wintype = 'normal'
+let g:floaterm_wintitle=1
 let g:floaterm_autoclose=1
 let g:floaterm_autoinsert=1
 let g:floaterm_rootmarkers = ['.pro']
@@ -46,8 +46,8 @@ tnoremap <silent> <leader>tt <C-\><C-n>:FloatermToggle<CR>
 nnoremap <silent> <leader>ts :FloatermShow<CR>
 
 " Focus terminal 
-nnoremap <silent> <leader>tf <C-\><C-n><C-W><Left>
-tnoremap <silent> <leader>tf <C-\><C-n><C-W><Left>
+nnoremap <silent> <leader>tf <C-\><C-n><C-W><Left><CR>
+tnoremap <silent> <leader>tf <C-\><C-n><C-W><Left><CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Hotkey to run other console apps
