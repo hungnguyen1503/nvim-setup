@@ -127,9 +127,9 @@ require("nvim-tree").setup {
         debounce_delay = 50,
         icons = {
           hint = "",
-          info = "",
-          warning = "⚠",
-          error = "",
+          info = "",
+          warning = "",
+          error = "",
         },
       },
       filters = {

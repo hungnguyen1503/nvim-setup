@@ -80,7 +80,7 @@ let bufferline.icon_separator_active = '▎'
 let bufferline.icon_separator_inactive = '▎'
 let bufferline.icon_close_tab = ''
 let bufferline.icon_close_tab_modified = '●'
-let bufferline.icon_pinned = '車'
+let bufferline.icon_pinned = ''
 
 " If true, new buffers will be inserted at the start/end of the list.
 " Default is to insert after current buffer.

@@ -6,6 +6,7 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4 expandtab
 set smarttab
+set completeopt=menu,menuone,noselect
 
 set listchars=tab:\¦\       " Tab charactor
 set list
@@ -30,12 +31,12 @@ set nowb
 set noswapfile
 
 " Optimize 
-set synmaxcol=200
+set synmaxcol=500
 set lazyredraw
 " au! BufNewFile,BufRead *.json set foldmethod=indent " Change foldmethod for 
 "             \specific filetype
 " autocmd FileType vim,c,txt setlocal foldmethod=indent
-autocmd User call coc#rpc#request('fillDiagnostics', [bufnr('%')])
+" autocmd User call coc#rpc#request('fillDiagnostics', [Plug 'andymass/vim-matchup'bufnr('%')])
 set encoding=UTF-8
 
 " Set format of tab name
@@ -53,8 +54,10 @@ else
 set clipboard=unnamedplus
 endif
 
-" Setting font size in other windows
+" Setting font size in other windows" set guifont=Fira\ Code:h11
 set guifont=Fira\ Code:h11
+" set guifont = Droid\ Sans\ Mono\ for\ Powerline\ Regular:h11
+" set guifont=RobotoMono\ Nerd\ Font\ Regular\ Mono:h11
 let g:flag_font_size = "false"
 function! ChangefontToggle()
 if g:flag_font_size == "false"
@@ -184,7 +187,7 @@ nnoremap <silent> <leader>s <ESC>:w<CR>:source%<CR>
         \:let g:neovide_fullscreen=v:false<CR>
 
 " Prevent copy visualmode 
-vnoremap <silent>p p:let @+=@0<CR>:let @"=@0<CR>" inoremap <silent>p p:let @+=@0<CR>:let @"=@0<CR>
+" vnoremap <silent>p p:let @+=@0<CR>:let @"=@0<CR>" inoremap <silent>p p:let @+=@0<CR>:let @"=@0<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugin list
@@ -192,7 +195,7 @@ vnoremap <silent>p p:let @+=@0<CR>:let @"=@0<CR>" inoremap <silent>p p:let @+=@0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin('~/plugged')
 " Theme
-Plug 'joshdick/onedark.vim',                  " Dark theme
+" Plug 'joshdick/onedark.vim',                  " Dark theme
 " Plug 'dracula/vim',{'name':'dracula'}
 
 " File browser
@@ -203,32 +206,31 @@ Plug 'ryanoasis/vim-devicons'                 " Icon for nvim
 Plug 'kyazdani42/nvim-web-devicons'           " Icon for telescope
 
 " Status bar
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
 
 " Terminal
 Plug 'voldikss/vim-floaterm'                  " Float terminal
 
 " Code intellisense
-Plug 'neoclide/coc.nvim', {'branch': 'release'} " Language server protocol (LSP) 
-Plug 'pappasam/coc-jedi'                      " Jedi language server 
+" Plug 'neoclide/coc.nvim', {'branch': 'release'} " Language server protocol (LSP) 
+" Plug 'pappasam/coc-jedi'                      " Jedi language server 
 " Plug 'folke/lua-dev.nvim'                   " TODO:Check lsp server
 Plug 'rafcamlet/coc-nvim-lua'                 " Code vim-lua 
 
 " Completion pairs
 Plug 'frazrepo/vim-rainbow'                   " Color pairs
-" Plug 'tpope/vim-surround'                     " Quick edit 'pairs'''
 Plug 'kylechui/nvim-surround'
 Plug 'jiangmiao/auto-pairs'                   " Parenthesis auto 
 
 Plug 'moll/vim-bbye'                          " Delete buffer without close windows
 
 " Code syntax highlight
-Plug 'jackguo380/vim-lsp-cxx-highlight'       " C/C++
+" Plug 'jackguo380/vim-lsp-cxx-highlight'       " C/C++
 Plug 'machakann/vim-highlightedyank'          " Highlight copy word
 
 " Code commentary
-Plug 'preservim/nerdcommenter'                " Comment code
+" Plug 'preservim/nerdcommenter'                " Comment code
 Plug 'tpope/vim-commentary'
 
 " Debugging
@@ -237,10 +239,10 @@ Plug 'camspiers/animate.vim'
 Plug 'camspiers/lens.vim'
 
 " Source code version control 
-Plug 'tpope/vim-fugitive'                     " Git infomation 
+ " Plug 'tpope/vim-fugitive'                     " Git infomation 
 Plug 'rhysd/git-messenger.vim'                " Git messenger
 Plug 'kdheepak/lazygit.nvim'                  " Lazy git 
-Plug 'airblade/vim-gitgutter'                 " Git show changes 
+" Plug 'airblade/vim-gitgutter'                 " Git show changes 
 
 " Using quick resgister
 Plug 'tversteeg/registers.nvim',              " Quick use register 
@@ -290,7 +292,7 @@ Plug 'VonHeikemen/searchbox.nvim'             " Search Box word
   Plug 'rcarriga/nvim-notify'                   " Notification 
 
 " Start up
-  Plug 'startup-nvim/startup.nvim'              " Start up with themes
+  " Plug 'startup-nvim/startup.nvim'              " Start up with themes
 
   Plug 'romgrk/barbar.nvim'                     " Smart manage tabline 
 
@@ -308,20 +310,20 @@ Plug 'VonHeikemen/searchbox.nvim'             " Search Box word
 
   Plug 'antoinemadec/FixCursorHold.nvim'
 
-  " Plug 'wellle/targets.vim'
 call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugin Setting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Set theme 
-colorscheme onedark
+" colorscheme onedark
 set termguicolors
 set t_Co=256
 
 " Require plugin config
 lua require('pluglua')
 lua require('init')
+lua require('plugins')
 
 lua <<EOF
     require("notify")("Welcome back NeoVim","info",{title="R-car Vision 2"})

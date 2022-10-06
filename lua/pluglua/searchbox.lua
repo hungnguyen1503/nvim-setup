@@ -24,7 +24,7 @@
       },
     },
     win_options = {
-      winhighlight = 'Normal:Normal,FloatBorder:FloatBorder',
+      winhighlight = 'Normal:Normal,FloatBorder:Normal',
     },
   },
   hooks = {

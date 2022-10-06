@@ -12,5 +12,5 @@ require("notify").setup{
         minimum_width = 35,
         render = "minimal",
         stages = "slide",
-        timeout = 500
+        timeout = 50
 }

@@ -4,7 +4,7 @@ require('neoscroll').setup({
                 '<C-y>', '<C-e>', '<C-j>', '<C-k>', 'zt', 'zz', 'zb'},
     hide_cursor = true,          -- Hide cursor while scrolling
     stop_eof = true,             -- Stop at <EOF> when scrolling downwards
-    respect_scrolloff = false,   -- Stop scrolling when the cursor reaches the scrolloff margin of the file
+    respect_scrolloff = true,   -- Stop scrolling when the cursor reaches the scrolloff margin of the file
     cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
     easing_function = "cubic",       -- Default easing function
     pre_hook = function(info) if info == "cursorline" then vim.wo.cursorline = false end end,
@@ -32,8 +32,8 @@ t['<ScrollWheelUp>'] = {'scroll', {'-0.25', 'true', '200', [['cubic']]}}
 t['<ScrollWheelDown>'] = {'scroll', { '0.25', 'true', '200', [['cubic']]}}
 
 -- When no easing function is provided the default easing function (in this case "quadratic") will be used
-t['zt']    = {'zt', {'200'}}
-t['zz']    = {'zz', {'200'}}
-t['zb']    = {'zb', {'200'}}
+t['zt']    = {'zt', {'250'}}
+t['zz']    = {'zz', {'250'}}
+t['zb']    = {'zb', {'250'}}
 
 require('neoscroll.config').set_mappings(t)
