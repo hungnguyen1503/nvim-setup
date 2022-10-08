@@ -1,6 +1,6 @@
-local present, mason = pcall(require, "mason")
+local status_ok, mason = pcall(require, "mason")
 
-if not present then
+if not status_ok then
   return
 end
 

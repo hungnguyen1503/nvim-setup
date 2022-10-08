@@ -7,6 +7,9 @@ local hide_in_width = function()
 	return vim.fn.winwidth(0) > 80
 end
 
+local purple =  "#B685B6"
+local filename = { 'filename', color = {fg = purple}, file_status = true, icon ='📝'}
+
 local diagnostics = {
 	"diagnostics",
 	sources = { "nvim_diagnostic" },
@@ -78,7 +81,7 @@ lualine.setup{
   },
   sections = {
     lualine_a = {mode},
-    lualine_b = {branch, diff, diagnostics},
+    lualine_b = {branch, filename, diff, diagnostics},
     lualine_c = {},
     lualine_x = {spaces, 'encoding', 'fileformat', filetype},
     lualine_y = {'location'},
@@ -87,8 +90,8 @@ lualine.setup{
   inactive_sections = {
     lualine_a = {},
     lualine_b = {},
-    lualine_c = {'filename'},
-    lualine_x = {'location'},
+    lualine_c = {},
+    lualine_x = {},
     lualine_y = {},
     lualine_z = {}
   },

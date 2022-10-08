@@ -1,5 +1,10 @@
+local status_ok, onedark = pcall(require, "onedark")
+if not status_ok then
+	return
+end
+
 -- Lua
-require('onedark').setup  {
+onedark.setup  {
     -- Main options --
     style = 'cool', -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
     transparent = false,  -- Show/hide background
@@ -24,7 +29,7 @@ require('onedark').setup  {
 
     -- Lualine options --
     lualine = {
-        transparent = false, -- lualine center bar transparency
+        transparent = true, -- lualine center bar transparency
     },
 
     -- Custom Highlights --
@@ -39,4 +44,4 @@ require('onedark').setup  {
     },
 }
 
-require('onedark').load()
+onedark.load()

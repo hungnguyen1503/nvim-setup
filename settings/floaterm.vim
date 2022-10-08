@@ -2,15 +2,18 @@
 " let g:floaterm_keymap_prev   = '<F2>'
 " let g:floaterm_keymap_next   = '<F3>'
 " let g:floaterm_keymap_toggle = '<F4>'
-let g:floaterm_position = 'topright'
+let g:floaterm_position = 'center'
 let g:floaterm_width = 0.8
 let g:floaterm_height = 0.8
 let g:floaterm_title = 'Terminal $1/$2'
-let g:floaterm_wintype = 'normal'
+let g:floaterm_wintype = 'float'
 let g:floaterm_wintitle=1
 let g:floaterm_autoclose=1
 let g:floaterm_autoinsert=1
 let g:floaterm_rootmarkers = ['.pro']
+
+let g:floaterm_borderchars = '─│─│╭╮╯╰'
+
 if has('win32')
 	let g:floaterm_shell = 'powershell -nologo'
 endif
@@ -18,6 +21,7 @@ endif
 " Set color
 hi Floaterm guibg=Grey15
 hi FloatermBorder ctermfg=250 ctermbg=24 guifg=#BBBBBB guibg=#073655
+" hi FloatermNC guifg=gray
 
 autocmd User FloatermOpen        " triggered after opening a new/existed floater
 

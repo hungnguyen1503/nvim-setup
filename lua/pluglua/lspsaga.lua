@@ -7,7 +7,7 @@ saga.init_lsp_saga
     border_style = "rounded",
     --the range of 0 for fully opaque window (disabled) to 100 for fully
     --transparent background. Values between 0-30 are typically most useful.
-    saga_winblend = 10,
+    saga_winblend = 20,
     -- when cursor in saga window you config these to move
     move_in_saga = { prev = '<C-p>',next = '<C-n>'},
     -- Error, Warn, Info, Hint
@@ -40,7 +40,7 @@ saga.init_lsp_saga
     -- finder icons
     finder_icons = {
         def = '  ',
-        ref = '諭 ',
+        ref = ' ',
         link = '  ',
     },
     -- finder do lsp request timeout
@@ -89,7 +89,7 @@ saga.init_lsp_saga
         --set special filetype win that outline window split.like NvimTree neotree
         -- defx, db_ui
         win_with = '',
-        win_width = 30,
+        win_width = 40,
         auto_enter = true,
         auto_preview = true,
         virt_text = '┃',
@@ -105,7 +105,7 @@ saga.init_lsp_saga
 }
 
 -- Finder
-keymap("n", "gh", "<cmd>Lspsaga lsp_finder<CR>", { silent = true })
+keymap("n", "<leader>fd", "<cmd>Lspsaga lsp_finder<CR>", { silent = true })
 
 -- Code action
 keymap({"n","v"}, "<leader>ca", "<cmd>Lspsaga code_action<CR>", { silent = true })
@@ -114,17 +114,17 @@ keymap({"n","v"}, "<leader>ca", "<cmd>Lspsaga code_action<CR>", { silent = true 
 keymap("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", { silent = true })
 
 -- Peek Definition
-keymap("n", "<leader>pd", "<cmd>Lspsaga peek_definition<CR>", { silent = true })
+keymap("n", "gpd", "<cmd>Lspsaga peek_definition<CR>", { silent = true })
 
 -- Show line diagnostics
-keymap("n", "<leader>cd", "<cmd>Lspsaga show_line_diagnostics<CR>", { silent = true })
+keymap("n", "go", "<cmd>Lspsaga show_line_diagnostics<CR>", { silent = true })
 
 -- Show cursor diagnostic
-keymap("n", "<leader>cd", "<cmd>Lspsaga show_cursor_diagnostics<CR>", { silent = true })
+keymap("n", "go", "<cmd>Lspsaga show_cursor_diagnostics<CR>", { silent = true })
 
--- Diagnsotic jump can use `<c-o>` to jump back
-keymap("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { silent = true })
-keymap("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", { silent = true })
+keymap("n", "gk", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { silent = true })
+keymap("n", "gj", "<cmd>Lspsaga diagnostic_jump_next<CR>", { silent = true })
 
 -- Hover Doc
 keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>", { silent = true })
+

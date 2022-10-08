@@ -15,6 +15,6 @@ inoremap <silent> <S-Insert> <C-R>+
 " set guifont=Consolas:h10
 
 " set guifont=Droid\ Sans\ Mono\ for\ Powerline:h11
-set guifont=Fira\ Code:h11
+set guifont=Fira\ Code:h13
 
 

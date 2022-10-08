@@ -19,7 +19,7 @@ set list
 set number                  " Show line number
 set number relativenumber   " Enable relativenumber
 set ignorecase              " Enable case-sensitive 
-set textwidth=80            " Limit number char in line 
+" set textwidth=80            " Limit number char in line 
 set wrap linebreak
 set fo+=t
 let bclose_multiple = 0
@@ -31,7 +31,7 @@ set nowb
 set noswapfile
 
 " Optimize 
-set synmaxcol=500
+" set synmaxcol=500
 set lazyredraw
 " au! BufNewFile,BufRead *.json set foldmethod=indent " Change foldmethod for 
 "             \specific filetype
@@ -40,7 +40,7 @@ set lazyredraw
 set encoding=UTF-8
 
 " Set format of tab name
-set guitablabel=\[%N\]\ %t\ %M
+" set guitablabel=\[%N\]\ %t\ %M
 
 syntax on
 
@@ -55,42 +55,22 @@ set clipboard=unnamedplus
 endif
 
 " Setting font size in other windows" set guifont=Fira\ Code:h11
-set guifont=Fira\ Code:h11
+set guifont=Fira\ Code:h13
 " set guifont = Droid\ Sans\ Mono\ for\ Powerline\ Regular:h11
 " set guifont=RobotoMono\ Nerd\ Font\ Regular\ Mono:h11
 let g:flag_font_size = "false"
 function! ChangefontToggle()
 if g:flag_font_size == "false"
     let g:flag_font_size="true"
-    set guifont=Fira\ Code:h9
+    set guifont=Fira\ Code:h11
 else
     let g:flag_font_size="false"
-    set guifont=Fira\ Code:h11
+    set guifont=Fira\ Code:h13
 endif
 endfunction
 noremap cf :call ChangefontToggle()<CR>
 
-" Setting tab 
-let g:flag_tab_space = "false"
-function! ChangeTabSpace()
-if g:flag_tab_space == "false"
-    let g:flag_tab_space = "true"
-    set tabstop=2
-    set shiftwidth=2
-    set softtabstop=2 expandtab
-    " lua require("notify")("Tab Space is 2","info",{title="Tab Space"})<CR>
-else
-    let g:flag_tab_space = "false"
-    set tabstop=4
-    set shiftwidth=4
-    set softtabstop=4 expandtab
-    " lua require("notify")("Tab Space is 4","info",{title="Tab Space"})
-endif
-endfunction
-noremap <leader><Tab> :call ChangeTabSpace()<CR>
-
 " Auto reload content changed outside
-" autocmd User TelescopePreviewerLoaded setlocal wrap
 au CursorHold,CursorHoldI * checktime
 au FocusGained,BufEnter * :checktime
 " autocmd CursorHold * silent call CocActionAsync('highlight')
@@ -183,11 +163,11 @@ inoremap <silent> <C-s> <ESC>:w<CR>:lua require("notify")("Save successfull "
 
 " Reload settings file
 nnoremap <silent> <leader>s <ESC>:w<CR>:source%<CR>
-        \:lua require("notify")("Reload successfull 勒", "info",{title = "Reload file setting "})<CR>
+        \:lua require("notify")("Reload successfull ", "info",{title = "Reload file setting "})<CR>
         \:let g:neovide_fullscreen=v:false<CR>
 
 " Prevent copy visualmode 
-" vnoremap <silent>p p:let @+=@0<CR>:let @"=@0<CR>" inoremap <silent>p p:let @+=@0<CR>:let @"=@0<CR>
+xnoremap <silent>p p:let @+=@0<CR>:let @"=@0<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugin list
@@ -199,86 +179,85 @@ call plug#begin('~/plugged')
 " Plug 'dracula/vim',{'name':'dracula'}
 
 " File browser
-Plug 'kyazdani42/nvim-tree.lua'
+" Plug 'kyazdani42/nvim-tree.lua'
 
 " Icon in nvim
-Plug 'ryanoasis/vim-devicons'                 " Icon for nvim
-Plug 'kyazdani42/nvim-web-devicons'           " Icon for telescope
+" Plug 'ryanoasis/vim-devicons'                 " Icon for nvim
+" Plug 'kyazdani42/nvim-web-devicons'           " Icon for telescope
 
 " Status bar
 " Plug 'vim-airline/vim-airline'
 " Plug 'vim-airline/vim-airline-themes'
 
 " Terminal
-Plug 'voldikss/vim-floaterm'                  " Float terminal
+" Plug 'voldikss/vim-floaterm'                  " Float terminal
 
 " Code intellisense
 " Plug 'neoclide/coc.nvim', {'branch': 'release'} " Language server protocol (LSP) 
 " Plug 'pappasam/coc-jedi'                      " Jedi language server 
 " Plug 'folke/lua-dev.nvim'                   " TODO:Check lsp server
-Plug 'rafcamlet/coc-nvim-lua'                 " Code vim-lua 
+" Plug 'rafcamlet/coc-nvim-lua'                 " Code vim-lua 
 
 " Completion pairs
-Plug 'frazrepo/vim-rainbow'                   " Color pairs
-Plug 'kylechui/nvim-surround'
-Plug 'jiangmiao/auto-pairs'                   " Parenthesis auto 
-
-Plug 'moll/vim-bbye'                          " Delete buffer without close windows
+" Plug 'frazrepo/vim-rainbow'                   " Color pairs
+" Plug 'kylechui/nvim-surround'
+" Plug 'jiangmiao/auto-pairs'                   " Parenthesis auto 
+"
+" Plug 'moll/vim-bbye'                          " Delete buffer without close windows
 
 " Code syntax highlight
 " Plug 'jackguo380/vim-lsp-cxx-highlight'       " C/C++
-Plug 'machakann/vim-highlightedyank'          " Highlight copy word
+" Plug 'machakann/vim-highlightedyank'          " Highlight copy word
 
 " Code commentary
 " Plug 'preservim/nerdcommenter'                " Comment code
-Plug 'tpope/vim-commentary'
+" Plug 'tpope/vim-commentary'
 
 " Debugging
 " Plug 'puremourning/vimspector'                " Vimspector
-Plug 'camspiers/animate.vim'
-Plug 'camspiers/lens.vim'
+" Plug 'camspiers/animate.vim'
+" Plug 'camspiers/lens.vim'
 
 " Source code version control 
  " Plug 'tpope/vim-fugitive'                     " Git infomation 
-Plug 'rhysd/git-messenger.vim'                " Git messenger
-Plug 'kdheepak/lazygit.nvim'                  " Lazy git 
+" Plug 'rhysd/git-messenger.vim'                " Git messenger
+" Plug 'kdheepak/lazygit.nvim'                  " Lazy git 
 " Plug 'airblade/vim-gitgutter'                 " Git show changes 
 
 " Using quick resgister
-Plug 'tversteeg/registers.nvim',              " Quick use register 
-          \{ 'branch': 'main' } 
-
+" Plug 'tversteeg/registers.nvim',              " Quick use register 
+"           \{ 'branch': 'main' } 
 " Quick replace
-Plug 'kqito/vim-easy-replace'                 " Easy to replace something 
-
+" Plug 'kqito/vim-easy-replace'                 " Easy to replace something 
+"
 " Smart move
-Plug 'matze/vim-move'                         " Quick move 
+" Plug 'matze/vim-move'                         " Quick move 
 
 " ArgWrap argument
-Plug 'foosoft/vim-argwrap'                    " Divide element in array
+" Plug 'foosoft/vim-argwrap'                    " Divide element in array
 
 " Gui in nvim
-Plug 'MunifTanjim/nui.nvim'
+" Plug 'MunifTanjim/nui.nvim'
 
 " Gui with search box 
-Plug 'VonHeikemen/searchbox.nvim'             " Search Box word
+" Plug 'VonHeikemen/searchbox.nvim'             " Search Box word
   " Plug 'romgrk/searchbox.nvim'             " Search Box word
 
 " Quick scope word
-  Plug 'unblevable/quick-scope'                 " Quick search word in current line
+  " Plug 'unblevable/quick-scope'                 " Quick search word in current line
 
 " Search file, buffer, etc
-  Plug 'nvim-telescope/telescope.nvim',
-                \{ 'tag': '0.1.0' }
-  Plug 'nvim-telescope/telescope-file-browser.nvim'
+  " Plug 'nvim-telescope/telescope.nvim',
+  "               \{ 'tag': '0.1.0' }
+  " Plug 'nvim-telescope/telescope-file-browser.nvim'
 
 " UI in nvim
-  Plug 'nvim-lua/plenary.nvim'
+  " Plug 'nvim-lua/plenary.nvim'
 
 " Highlight doxygen
-  Plug 'B4mbus/todo-comments.nvim'              " highlight doxygen
+  " Plug 'B4mbus/todo-comments.nvim'              " highlight doxygen
 
-" FIX:Quick got to preview source code 
+" ERROR:Quick got to preview source code 
 " HACK: ok
 " NOTE: ok
 " PERF: ok
@@ -286,29 +265,29 @@ Plug 'VonHeikemen/searchbox.nvim'             " Search Box word
 " TODO: ok
 
 " Underline same word
-  Plug 'yamatsum/nvim-cursorline'
+  " Plug 'yamatsum/nvim-cursorline'
 
 " Notification
-  Plug 'rcarriga/nvim-notify'                   " Notification 
+  " Plug 'rcarriga/nvim-notify'                   " Notification 
 
 " Start up
   " Plug 'startup-nvim/startup.nvim'              " Start up with themes
 
-  Plug 'romgrk/barbar.nvim'                     " Smart manage tabline 
+  " Plug 'romgrk/barbar.nvim'                     " Smart manage tabline 
 
 " Add dynamic font scaling
-  Plug 'tenxsoydev/size-matters.nvim'           " Adjust font size 
+  " Plug 'tenxsoydev/size-matters.nvim'           " Adjust font size 
 
 " Workspace
-  Plug 'nvim-telescope/telescope-project.nvim'  " Manage project
+  " Plug 'nvim-telescope/telescope-project.nvim'  " Manage project
 
 "Smooth Scroll
-  Plug 'karb94/neoscroll.nvim'
+  " Plug 'karb94/neoscroll.nvim'
 
   " Plug 'folke/trouble.nvim'
-  Plug 'arafatamim/trouble.nvim'
+  " Plug 'arafatamim/trouble.nvim'
 
-  Plug 'antoinemadec/FixCursorHold.nvim'
+  " Plug 'antoinemadec/FixCursorHold.nvim'
 
 call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -326,7 +305,7 @@ lua require('init')
 lua require('plugins')
 
 lua <<EOF
-    require("notify")("Welcome back NeoVim","info",{title="R-car Vision 2"})
+    require("notify")("Welcome back NeoVim  ","info",{title="R-car Vision 2"})
 EOF
 
 " Fix sizeof windows
@@ -341,10 +320,10 @@ let g:lens#width_resize_min = 20
 " Disable automatic comment in newline
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-hi Pmenu ctermfg=250 ctermbg=236 guifg=#BBBBBB guibg=#2D2D30 
-hi PmenuSel ctermfg=250 ctermbg=24 guifg=#BBBBBB guibg=#073655
-hi PmenuSbar ctermbg=237 guibg=#3D3D40
-hi PmenuThumb ctermbg=250 guibg=#BBBBBB
+" hi Pmenu ctermfg=250 ctermbg=236 guifg=#BBBBBB guibg=#2D2D30 
+" hi PmenuSel ctermfg=250 ctermbg=24 guifg=#BBBBBB guibg=#073655
+" hi PmenuSbar ctermbg=237 guibg=#3D3D40
+" hi PmenuThumb ctermbg=250 guibg=#BBBBBB
 
 " Other setting
 for setting_file in split(glob(stdpath('config').'/settings/*.vim'))
